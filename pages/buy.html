@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Buy Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../fontawesome/css/all.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/buy-style.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-main-bar">
+        <div class="logo-container">
+          <a href="../index.html"><img class="logo" src="../images/logo-inline.png" alt="Lion Real Estate logo"></a>
+        </div>
+
+        <nav class="header-main-nav">
+          <ul class="header-menu-items">
+            <li><a class="header-menu-item current-page" href="buy.html">Buy</a></li>
+            <li><a class="header-menu-item" href="rent.html">Rent</a></li>
+            <li><a class="header-menu-item" href="sell.html">Sell</a></li>
+            <li><a class="header-menu-item" href="sold.html">Sold</a></li>
+            <li><a class="header-menu-item" href="mortgage.html">Mortgage</a></li>
+            <hr>
+            <li class="contact-detail">
+              <a href="tel:123-456-7890">123-456-7890</a>
+              <div class="platforms">
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-right-nav">
+          <i class="header-account fas fa-user-circle"></i>
+          <div class="account-tooltip">
+            <h3>My Account</h3>
+            <button class="tooltip-btn">My Favorites</button>
+            <button class="tooltip-btn signup-btn">Create Account</button>
+            <button class="tooltip-btn signin-btn">Sign In Now</button>
+          </div>
+          <i class="header-chat fas fa-comments"></i>
+          <a class="header-phone" href="tel:123-456-7890">123-456-7890</a>
+          <select class="header-language-chooser" id="languages" name="languages">
+            <option value="english">English</option>
+            <option value="spanish">Spanish</option>
+            <option value="french">French</option>
+            <option value="portuguese">Portuguese</option>
+          </select>
+        </div>
+
+        <div class="header-menu-btn">
+          <div class="header-menu-btn-lines"></div>
+        </div>
+      </div>
+
+      <div class="form-container signup-form">
+        <form class="form-content zoom-in" action="">
+          <div class="container">
+            <span onclick="hideSignupForm()" class="close-form">&times;</span>
+            <h1>Sign Up</h1>
+            <p>Please fill in this form to create an account.</p>
+            <hr>
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" required>
+      
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+      
+            <label for="password-repeat"><b>Repeat Password</b></label>
+            <input type="password" placeholder="Repeat Password" name="password-repeat" required>
+            
+            <label>
+              <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+      
+            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+      
+            <div class="clearfix">
+              <button type="submit" class="form-btn signup-btn">Sign Up</button>
+              <button type="button" onclick="hideSignupForm()" class="form-btn cancel-btn">Cancel</button>
+            </div>
+
+            <hr>
+            <p>Already have an account? | <a href="#" onclick="hideSignupForm();showSigninForm()">Log In</a></p>
+          </div>
+        </form>
+      </div>
+
+      <div class="form-container signin-form">
+        <form class="form-content zoom-in" action="">
+          <span onclick="hideSigninForm()" class="close-form">&times;</span>
+          <div class="avatar-container">
+            <img src="../images/user-avatar-sm.png" alt="Avatar" class="avatar">
+          </div>
+      
+          <div class="container">
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
+      
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+              
+            <button type="submit" class="form-btn">Log In</button>
+            <label>
+              <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+          </div>
+      
+          <div class="container cancel">
+            <button type="button" onclick="hideSigninForm()" class="form-btn cancel-btn">Cancel</button>
+            <span class="forgot-password">Forgot <a href="#">password</a> ?</span>
+          </div>
+        </form>
+      </div>
+
+      <div class="chat-container">
+        <div class="chat-header">
+          <h3>LRS LIVE CHAT</h3>
+          <p>We are online</p>
+          <span onclick="closeChat()" class="close-chat">&times;</span>
+        </div>
+        <div class="chat-messages">
+          <p class="response message">Hello, dear customer!</p>
+        </div>
+        <hr>
+        <div class="chat-input">
+          <textarea class="user-input" rows="5" placeholder="Type your message here..."></textarea>
+          <button class="send-message-btn">SEND</button>
+        </div>
+      </div>
+
+      <div class="search-container">
+        <h1>Houses for sale near me</h1>
+        <p>Find houses for sale near you. View photos, open house information, 
+        and property details for nearby real estate.</p>
+        
+        <div class="reverse-container">
+          <img src="../images/house-clipart.png" alt="House clipart">
+
+          <form class="search-form">
+            <label for="location">Location
+              <input type="text" name="location" id="location" placeholder="City, Adress, School, Agent, ZIP">
+            </label>
+            <label for="min-price">Price range
+              <div class="price-range">
+                <select name="min-price" id="min-price">
+                  <option value="">No min</option>
+                  <option value="">&#36;50k</option>
+                  <option value="">&#36;75k</option>
+                  <option value="">&#36;100k</option>
+                  <option value="">&#36;125k</option>
+                  <option value="">&#36;150k</option>
+                  <option value="">&#36;175k</option>
+                  <option value="">&#36;200k</option>
+                  <option value="">&#36;225k</option>
+                  <option value="">&#36;250k</option>
+                  <option value="">&#36;275k</option>
+                  <option value="">&#36;300k</option>
+                  <option value="">&#36;325k</option>
+                  <option value="">&#36;350k</option>
+                  <option value="">&#36;375k</option>
+                  <option value="">&#36;400k</option>
+                  <option value="">&#36;425k</option>
+                  <option value="">&#36;450k</option>
+                  <option value="">&#36;475k</option>
+                  <option value="">&#36;500k</option>
+                  <option value="">&#36;550k</option>
+                  <option value="">&#36;600k</option>
+                  <option value="">&#36;650k</option>
+                  <option value="">&#36;700k</option>
+                  <option value="">&#36;750k</option>
+                  <option value="">&#36;800k</option>
+                  <option value="">&#36;850k</option>
+                  <option value="">&#36;900k</option>
+                  <option value="">&#36;950k</option>
+                  <option value="">&#36;1M</option>
+                  <option value="">&#36;1.25M</option>
+                  <option value="">&#36;1.5M</option>
+                  <option value="">&#36;1.75M</option>
+                  <option value="">&#36;2M</option>
+                  <option value="">&#36;2.25M</option>
+                  <option value="">&#36;2.5M</option>
+                  <option value="">&#36;2.75M</option>
+                  <option value="">&#36;3M</option>
+                  <option value="">&#36;3.25M</option>
+                  <option value="">&#36;3.5M</option>
+                  <option value="">&#36;3.75M</option>
+                  <option value="">&#36;4M</option>
+                  <option value="">&#36;4.25M</option>
+                  <option value="">&#36;4.5M</option>
+                  <option value="">&#36;4.75M</option>
+                  <option value="">&#36;5M</option>
+                  <option value="">&#36;6M</option>
+                  <option value="">&#36;7M</option>
+                  <option value="">&#36;8M</option>
+                  <option value="">&#36;9M</option>
+                  <option value="">&#36;10M</option>
+                </select>
+                <select name="max-price" id="max-price">
+                  <option value="">No max</option>
+                  <option value="">&#36;50k</option>
+                  <option value="">&#36;75k</option>
+                  <option value="">&#36;100k</option>
+                  <option value="">&#36;125k</option>
+                  <option value="">&#36;150k</option>
+                  <option value="">&#36;175k</option>
+                  <option value="">&#36;200k</option>
+                  <option value="">&#36;225k</option>
+                  <option value="">&#36;250k</option>
+                  <option value="">&#36;275k</option>
+                  <option value="">&#36;300k</option>
+                  <option value="">&#36;325k</option>
+                  <option value="">&#36;350k</option>
+                  <option value="">&#36;375k</option>
+                  <option value="">&#36;400k</option>
+                  <option value="">&#36;425k</option>
+                  <option value="">&#36;450k</option>
+                  <option value="">&#36;475k</option>
+                  <option value="">&#36;500k</option>
+                  <option value="">&#36;550k</option>
+                  <option value="">&#36;600k</option>
+                  <option value="">&#36;650k</option>
+                  <option value="">&#36;700k</option>
+                  <option value="">&#36;750k</option>
+                  <option value="">&#36;800k</option>
+                  <option value="">&#36;850k</option>
+                  <option value="">&#36;900k</option>
+                  <option value="">&#36;950k</option>
+                  <option value="">&#36;1M</option>
+                  <option value="">&#36;1.25M</option>
+                  <option value="">&#36;1.5M</option>
+                  <option value="">&#36;1.75M</option>
+                  <option value="">&#36;2M</option>
+                  <option value="">&#36;2.25M</option>
+                  <option value="">&#36;2.5M</option>
+                  <option value="">&#36;2.75M</option>
+                  <option value="">&#36;3M</option>
+                  <option value="">&#36;3.25M</option>
+                  <option value="">&#36;3.5M</option>
+                  <option value="">&#36;3.75M</option>
+                  <option value="">&#36;4M</option>
+                  <option value="">&#36;4.25M</option>
+                  <option value="">&#36;4.5M</option>
+                  <option value="">&#36;4.75M</option>
+                  <option value="">&#36;5M</option>
+                  <option value="">&#36;6M</option>
+                  <option value="">&#36;7M</option>
+                  <option value="">&#36;8M</option>
+                  <option value="">&#36;9M</option>
+                  <option value="">&#36;10M</option>
+                </select>
+              </div>
+            </label>
+            <button type="button" class="search-houses-btn">Search</button>
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-page">
+      <section class="houses-for-sale">
+        <div class="featured-houses-container">
+          <h2>Featured houses</h2>
+          <div class="slideshow-container">
+            <div class="slideshow-elements">
+              <div class="house featured-house">
+                <div class="favorite">
+                  <i class="far fa-heart"></i>
+                </div>
+                <div class="house-img"></div>
+                <div class="house-description-container">
+                  <div class="house-description">
+                    <span class="price">&#36;1,500,000</span>
+                    <span class="beds-baths-area">
+                      <i class="fas fa-bed"> 5 Beds</i>
+                      <i class="fas fa-bath"> 2.5 Baths</i>
+                      <i class="fas fa-ruler-combined"> 1,234 Sq. Ft.</i>
+                    </span>
+                    <span class="line-neighborhood-postcode">
+                      2915 W 5th St Apt 13G, Coney Island, 11224
+                    </span>
+                    <span class="city-county-state-code">
+                      Brooklyn, Kings, NY
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="house featured-house">
+                <div class="favorite">
+                  <i class="far fa-heart"></i>
+                </div>
+                <div class="house-img"></div>
+                <div class="house-description-container">
+                  <div class="house-description">
+                    <span class="price">&#36;</span>
+                    <span class="beds-baths-area">
+                      <i class="fas fa-bed"> Beds</i>
+                      <i class="fas fa-bath"> Baths</i>
+                      <i class="fas fa-ruler-combined"></i>
+                    </span>
+                    <span class="line-neighborhood-postcode">
+                      
+                    </span>
+                    <span class="city-county-state-code">
+                      
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="house featured-house">
+                <div class="favorite">
+                  <i class="far fa-heart"></i>
+                </div>
+                <div class="house-img"></div>
+                <div class="house-description-container">
+                  <div class="house-description">
+                    <span class="price">&#36;</span>
+                    <span class="beds-baths-area">
+                      <i class="fas fa-bed"> Beds</i>
+                      <i class="fas fa-bath"> Baths</i>
+                      <i class="fas fa-ruler-combined"></i>
+                    </span>
+                    <span class="line-neighborhood-postcode">
+                      
+                    </span>
+                    <span class="city-county-state-code">
+                      
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="house featured-house">
+                <div class="favorite">
+                  <i class="far fa-heart"></i>
+                </div>
+                <div class="house-img"></div>
+                <div class="house-description-container">
+                  <div class="house-description">
+                    <span class="price">&#36;</span>
+                    <span class="beds-baths-area">
+                      <i class="fas fa-bed"> Beds</i>
+                      <i class="fas fa-bath"> Baths</i>
+                      <i class="fas fa-ruler-combined"></i>
+                    </span>
+                    <span class="line-neighborhood-postcode">
+                      
+                    </span>
+                    <span class="city-county-state-code">
+                      
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="house featured-house">
+                <div class="favorite">
+                  <i class="far fa-heart"></i>
+                </div>
+                <div class="house-img"></div>
+                <div class="house-description-container">
+                  <div class="house-description">
+                    <span class="price">&#36;</span>
+                    <span class="beds-baths-area">
+                      <i class="fas fa-bed"> Beds</i>
+                      <i class="fas fa-bath"> Baths</i>
+                      <i class="fas fa-ruler-combined"></i>
+                    </span>
+                    <span class="line-neighborhood-postcode">
+                      
+                    </span>
+                    <span class="city-county-state-code">
+                      
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="house featured-house">
+                <div class="favorite">
+                  <i class="far fa-heart"></i>
+                </div>
+                <div class="house-img"></div>
+                <div class="house-description-container">
+                  <div class="house-description">
+                    <span class="price">&#36;</span>
+                    <span class="beds-baths-area">
+                      <i class="fas fa-bed"> Beds</i>
+                      <i class="fas fa-bath"> Baths</i>
+                      <i class="fas fa-ruler-combined"></i>
+                    </span>
+                    <span class="line-neighborhood-postcode">
+                      
+                    </span>
+                    <span class="city-county-state-code">
+                      
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a class="slide-btn prev-house invisible"><i class="fas fa-chevron-left"></i></a>
+            <a class="slide-btn next-house"><i class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
+
+        <div class="search-results-container invisible">
+          <h2>Search results</h2>
+          <p>Hold <code>Shift</code> while over house description to scroll horizontally.</p>
+          <div class="houses-for-sale-container">
+            
+          </div>
+          
+          <button class="btn show-more-btn">Show more houses</button>
+          <button class="btn show-all-btn">Show all houses</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="links-container">
+        <div class="col-general">
+          <a href="tel:123-456-7890">123-456-7890</a>
+          <div class="social-platforms">
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+          <a href="#">Contact Us</a>
+          <a href="#">FAQs</a>
+          <a href="#">Sitemap</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Accessibility Statement</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+
+        <div class="col-resources">
+          <h4>GENERAL</h4>
+          <ul> 
+            <li><a href="#">Fair Housing Act</a></li>
+            <li><a href="#">Fraud Alert</a></li>
+            <li><a href="#">Accessibility Statement</a></li>
+          </ul>
+          <h4>ABOUT LION REAL ESTATE</h4>
+          <ul> 
+            <li><a href="#">Company Profile</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">In the news</a></li>
+            <li><a href="#">Philanthrophy</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+          <h4>REAL ESTATE RESOURCES</h4>
+          <ul> 
+            <li><a href="#">Home Seller Resources</a></li>
+            <li><a href="#">Homw Buyer Resources</a></li>
+            <li><a href="#">Real Estate Glossary</a></li>
+            <li><a href="#">Mortgage Calculators</a></li>
+          </ul>
+        </div>
+
+        <div class="col-markets">
+          <div class="col-popular-markets">
+            <h4>POPULAR REAL ESTATE MARKETS</h4>
+            <ul class="popular-markets-ul"> 
+              <li><a href="#">Atlanta Real Estate</a></li>
+              <li><a href="#">Austin Real Estate</a></li>
+              <li><a href="#">San Francisco Real Estate</a></li>
+              <li><a href="#">Los Angeles Real Estate</a></li>
+              <li><a href="#">Dallas Real Estate</a></li>
+              <li><a href="#">Houston Real Estate</a></li>
+              <li><a href="#">Chicago Real Estate</a></li>
+              <li><a href="#">Orlando Real Estate</a></li>
+              <li><a href="#">Philadelphia Real Estate</a></li>
+              <li><a href="#">Phoenix Real Estate</a></li>
+              <li><a href="#">Boston Real Estate</a></li>
+              <li><a href="#">Miami Real Estate</a></li>
+              <li><a href="#">Manhattan Real Estate</a></li>
+              <li><a href="#">Las Vegas Real Estate</a></li>
+              <li><a href="#">Denver Real Estate</a></li>
+            </ul>
+            <span class="more-btn more-markets-btn" onclick="changeButtonText(this)">Show more</span>
+          </div>
+
+          <div class="col-popular-states">
+            <h4>SEARCH BY POPULAR STATES</h4>
+            <ul class="popular-states-ul"> 
+              <li><a href="#">California Real Estate</a></li>
+              <li><a href="#">Florida Real Estate</a></li>
+              <li><a href="#">Texas Real Estate</a></li>
+              <li><a href="#">New York Real Estate</a></li>
+              <li><a href="#">Illinois Real Estate</a></li>
+              <li><a href="#">Pennsylvania Real Estate</a></li>
+              <li><a href="#">Ohio Real Estate</a></li>
+              <li><a href="#">Georgia Real Estate</a></li>
+              <li><a href="#">North Carolina Real Estate</a></li>
+              <li><a href="#">New Jersey Real Estate</a></li>
+              <li><a href="#">Virginia Real Estate</a></li>
+              <li><a href="#">Utah Real Estate</a></li>
+              <li><a href="#">Colorado Real Estate</a></li>
+              <li><a href="#">Arizona Real Estate</a></li>
+              <li><a href="#">Hawaii Real Estate</a></li>
+            </ul>
+            <span class="more-btn more-states-btn" onclick="changeButtonText(this)">Show more</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="footer">
+
+      <div class="copyrights-container">
+        <div class="logo-container">
+          <a href="#"><img class="logo" src="../images/logo-inline.png" alt="Lion Real Estate logo"></a>
+        </div>
+        <div class="copyrights-text">
+          <a href="#"><h3>Do Not Sell My Personal information</h3></a>
+          <p><span>&#169</span>2020 Lion Real Estate LLC. All rights reserved.</p>
+          <p>LION REAL ESTATE<sup>&#174</sup>, the LION REAL ESTATE Logo and LRS
+            <sup>&#174</sup> are service marks owned by Lion Real Estate LLC. 
+            Lion Real Estate LLC fully supports the principles of the 
+            Fair Housing Act and the Equal Opportunity Act. Each office is 
+            independently owned and operated. Listing information is deemed 
+            reliable but not guaranteed accurate.</p>
+        </div>
+      </div>
+
+      <div class="footer-img-container">
+        <img class="footer-img" src="../images/footer-img.png" alt="City art">
+      </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/buy.js"></script>
+  </body>
+</html>

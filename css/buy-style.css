@@ -1,0 +1,368 @@
+/*=====================================
+general
+=====================================*/
+code {
+  font-size: 2rem;
+  padding: 0.25rem;
+  border-radius: 5px;
+  background-color: var(--gray);
+}
+
+.invisible {
+  display: none;
+}
+
+/*=====================================
+site header
+=====================================*/
+.site-header {
+  height: auto;
+  margin-top: 80px;
+  background: none;
+}
+
+.search-container,
+section.houses-for-sale {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/*=====================================
+search container
+=====================================*/
+.search-container {
+  padding: 1rem;
+}
+  
+.search-container h1 {
+  margin-bottom: 1rem;
+}
+
+.search-container p {
+  line-height: 2.25rem;
+}
+
+.reverse-container {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.reverse-container img {
+  width: 35%;
+  max-width: 350px;
+  margin-top: 2rem;
+  display: none;
+}
+
+/*=====================================
+search form
+=====================================*/
+.search-form {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  margin-top: 3rem;
+}
+
+.search-form input,
+.search-form select,
+.search-form button {
+  font-size: 1.75rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  outline-width: 10px;
+  outline-color: var(--little-boy-blue);
+  border: none;
+}
+
+.search-form input {
+  width: 100%;
+  border-bottom: 1px solid var(--gray);
+}
+
+.price-range {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-form select {
+  width: 49%;
+}
+
+.search-houses-btn {
+  font-weight: bold;
+  border-radius: 5px;
+  color: var(--white);
+  background-color: var(--prussian-blue75);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.search-houses-btn:hover {
+  background-color: var(--little-boy-blue);
+}
+
+/*=====================================
+section houses for sale
+=====================================*/
+section.houses-for-sale {
+  text-align: left;
+  margin: 3rem auto 10rem auto;
+}
+
+/*=====================================
+featured houses
+=====================================*/
+.featured-houses-container {
+  margin-bottom: 3rem;
+}
+
+.featured-houses-container h2 {
+  margin-left: 1rem;
+}
+
+.slideshow-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.slideshow-elements {
+  width: auto;
+  padding: 1rem 1rem 2rem 1rem;
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.house {
+  max-width: calc((100% - 2rem) / 2);
+  margin: 0 1rem 2rem 0;
+  position: relative;
+  flex: 1 0 100%;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 10px 1px var(--gray);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.house.featured-house {
+  max-width: 576px;
+  flex: 1 0 100%;
+  margin: 0 2rem 0 0;
+}
+
+.house .house-img {
+  height: 200px;
+  width: 100%;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  background-color: var(--gray);
+  background-image: url(../images/houses-images/house30.jpg);
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.house.featured-house .house-img {
+  height: 300px;
+}
+
+.house:hover .house-img {
+  transform: translateY(-5%) scale(1.1);
+}
+
+.house .favorite {
+  font-size: 3rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: var(--white);
+  z-index: 1;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.house .favorite:hover {
+  color: var(--red);
+}
+
+.house .house-description-container {
+  height: 125px;
+  overflow: hidden;
+}
+
+.house .house-description {
+  margin: 1rem;
+  overflow-x: auto;
+}
+
+.house .house-description span {
+  font-size: 16px;
+  white-space: nowrap;
+  display: block;
+}
+
+.house .house-description span.price {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+span.beds-baths-area {
+  margin-bottom: 10px;
+}
+
+span.beds-baths-area .fas {
+  margin-right: 1rem;
+  color: var(--gray);
+}
+
+span.city-county-state-code {
+  margin-bottom: 10px;
+}
+
+.slide-btn {
+  font-size: 3rem;
+  padding: 1.5rem;
+  position: absolute;
+  top: 50%;
+  background-color: var(--black50);
+  transform: translateY(-50%);
+  transition: background-color 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.slide-btn .fas {
+  color: var(--white);
+}
+
+.prev-house {
+  left: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.next-house {
+  right: 1rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.prev-house:hover,
+.next-house:hover {
+  background-color: var(--black75);
+}
+
+/*=====================================
+search result
+=====================================*/
+.search-results-container {
+  margin-bottom: 3rem;
+}
+
+.search-results-container h2,
+.search-results-container p {
+  margin-left: 1rem;
+}
+
+.houses-for-sale-container {
+  padding: 1rem 0 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.5rem;
+  margin-left: 1rem;
+  border: 2px solid var(--little-boy-blue);
+  border-radius: 5px;
+  color: var(--little-boy-blue);
+  background-color: var(--white);
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn.disabled {
+  color: var(--gray);
+  border: 2px solid var(--gray);
+  cursor: initial;
+}
+
+.btn:hover {
+  color: var(--white);
+  background-color: var(--little-boy-blue);
+}
+
+.btn.disabled:hover {
+  background-color: var(--gray);
+}
+
+/*=====================================
+media queries
+=====================================*/
+@media (min-width: 576px) {
+  /*=====================================
+  site header
+  =====================================*/
+  .site-header {
+    margin-top: 100px;
+  }
+
+  /*=====================================
+  featured houses
+  =====================================*/
+  .house {
+    max-width: calc((100% - 3rem) / 3);
+  }
+
+  .house.featured-house {
+    max-width: calc((100% - 2rem) / 2);
+  }
+}
+
+
+
+
+@media (min-width: 768px) {
+  /*=====================================
+  search container
+  =====================================*/
+  .reverse-container img {
+    display: inline;
+  }
+  
+  /*=====================================
+  featured houses
+  =====================================*/
+  .house {
+    max-width: calc((100% - 4rem) / 4);
+  }
+  
+  .house.featured-house {
+    max-width: calc((100% - 4rem) / 3);
+  }
+}
+
+
+
+
+@media (min-width: 1024px) {
+  /*=====================================
+  site header
+  =====================================*/
+  .site-header {
+    margin-top: 140px;
+  }
+
+  /*=====================================
+  featured houses
+  =====================================*/
+  .house {
+    max-width: calc((100% - 5rem) / 5);
+  }
+  
+  .house.featured-house {
+    max-width: calc((100% - 6rem) / 4);
+  }
+}
