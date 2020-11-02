@@ -38,6 +38,9 @@ class HouseForSale {
   }
 }
 
+const LIMIT = 50;
+let minPrice, maxPrice, city, stateCode;
+
 const searchButton = document.querySelector(".search-houses-btn");
 let housesForSale = [], resultsLimit = 50;
 
@@ -107,7 +110,7 @@ function listHousesForSale() {
     }
   });
 
-  xhr.open("GET", "https://realtor.p.rapidapi.com/properties/v2/list-for-sale?price_min=150000&sort=relevance&price_max=500000&sqft_min=1&city=New%20York%20City&limit=50&offset=0&state_code=NY");
+  xhr.open("GET", `https://realtor.p.rapidapi.com/properties/v2/list-for-sale?price_min=${minPrice}&sort=relevance&price_max=${maxPrice}&sqft_min=1&city=${city}&limit=${LIMIT}&offset=0&state_code=${stateCode}`);
   xhr.setRequestHeader("x-rapidapi-host", "realtor.p.rapidapi.com");
   xhr.setRequestHeader("x-rapidapi-key", "APIkey");
 
@@ -132,19 +135,29 @@ function extractDataOfInterest(responseText) {
 
 function addHousesToContainer() {
   let visibleHouses = 0;
-  housesForSale.forEach(houseData => {
-    let newHouse = createHouseElement();
-    setHouseImage(newHouse, houseData);
-    setHouseDescription(newHouse, houseData);
-    viewHouseInNewTabOnClick(newHouse, houseData);
-    
-    if (visibleHouses >= 10) {
-      newHouse.classList.add("invisible");
-    }
 
-    housesForSaleContainer.append(newHouse);
-    visibleHouses++;
-  });
+  if (housesForSale.length == 0) {
+    document.querySelector(".location").innerText = location;
+    makeVisible(document.querySelector(".no-results-message"));
+    makeInvisible(document.querySelector(".horizontal-scroll-instruction"));
+  } else {
+    makeInvisible(document.querySelector(".no-results-message"));
+    makeVisible(document.querySelector(".horizontal-scroll-instruction"));
+
+    housesForSale.forEach(houseData => {
+      let newHouse = createHouseElement();
+      setHouseImage(newHouse, houseData);
+      setHouseDescription(newHouse, houseData);
+      viewHouseInNewTabOnClick(newHouse, houseData);
+      
+      if (visibleHouses >= 10) {
+        newHouse.classList.add("invisible");
+      }
+  
+      housesForSaleContainer.append(newHouse);
+      visibleHouses++;
+    });
+  }
 }
 
 

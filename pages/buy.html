@@ -145,7 +145,7 @@
 
           <form class="search-form">
             <label for="location">Location
-              <input type="text" name="location" id="location" placeholder="City, Adress, School, Agent, ZIP">
+              <input type="text" name="location" id="location" placeholder="City, district, place (state for precision)">
             </label>
             <label for="min-price">Price range
               <div class="price-range">
@@ -415,7 +415,8 @@
 
         <div class="search-results-container invisible">
           <h2>Search results</h2>
-          <p>Hold <code>Shift</code> while over house description to scroll horizontally.</p>
+          <p class="no-results-message invisible">There are no houses for sale in <span class="location"></span> in the given price range.</p>
+          <p class="horizontal-scroll-instruction invisible">Hold <code>Shift</code> while over house description to scroll horizontally.</p>
           <div class="houses-for-sale-container">
             
           </div>
