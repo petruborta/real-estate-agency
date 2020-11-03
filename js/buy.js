@@ -93,12 +93,105 @@ function getFeaturedHousesPerSlide() {
 /*=====================================
 search form functions
 =====================================*/
-searchButton.onclick = listHousesForSale;
+searchButton.onclick = makeCall;
+
+function makeCall() {
+  if (!document.getElementById("location").value) {
+    alert("Please introduce lacation.");
+    return;
+  }
+
+  if (document.getElementById("min-price").selectedIndex == 0) {
+    alert("Please select a minimum price.");
+    return;
+  }
+
+  if (document.getElementById("max-price").selectedIndex == 0) {
+    alert("Please select a maximum price.");
+    return;
+  }
+
+  processPriceRange();
+  if (minPrice >= maxPrice) {
+    alert("Please select a valid price range.");
+    document.getElementById("min-price").selectedIndex = 0;
+    document.getElementById("max-price").selectedIndex = 0;
+    return;
+  }
+
+  clearData();
+  getCityAndStateCode(listHousesForSale);
+}
+
+function clearData() {
+  city = "";
+  stateCode = "";
+  housesForSale = [];
+  housesForSaleContainer.innerHTML = "";
+}
+
+function resetForm() {
+  document.getElementById("location").value = "";
+  document.getElementById("min-price").selectedIndex = 0;
+  document.getElementById("max-price").selectedIndex = 0;
+}
+
+function processPriceRange() {
+  minPrice = getSelectedOptionNumericValue("min-price");
+  maxPrice = getSelectedOptionNumericValue("max-price");
+}
+
+function getSelectedOptionNumericValue(id) {
+  let select = document.getElementById(id);
+  let value = select.options[select.selectedIndex].text;
+
+  value = value.slice(1, value.length);
+  if (value.charAt(value.length - 1) == "k") {
+    value = value.slice(0, -1);
+    value = parseFloat(value) * 1000;
+  } else {
+    value = value.slice(0, -1);
+    value = parseFloat(value) * 1000000;
+  }
+
+  return value;
+}
+
+function getCityAndStateCode(callback) {
+  const data = null;
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === this.DONE) {
+      let response = JSON.parse(this.responseText);
+      console.log(response);
+      if (response.autocomplete.length > 0) {
+        city = response.autocomplete[0]["city"];
+        stateCode = response.autocomplete[0]["state_code"];
+        callback();
+      } else {
+        addHousesToContainer();
+        disableShowMoreAndShowAllButtons(true);
+        makeVisible(searchResultsContainer);
+        scrollToHousesForSale();
+        resetForm();
+      }
+    }
+  });
+
+  let location = document.getElementById("location").value;
+  xhr.open("GET", "https://rapidapi.p.rapidapi.com/locations/auto-complete?input=" + location);
+  xhr.setRequestHeader("x-rapidapi-key", "APIkey");
+  xhr.setRequestHeader("x-rapidapi-host", "realtor.p.rapidapi.com");
+
+  xhr.send(data);
+}
 
 function listHousesForSale() {
-  var data = null;
+  const data = null;
 
-  var xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();
 
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === this.DONE) {
@@ -134,30 +227,31 @@ function extractDataOfInterest(responseText) {
 }
 
 function addHousesToContainer() {
-  let visibleHouses = 0;
-
   if (housesForSale.length == 0) {
-    document.querySelector(".location").innerText = location;
+    document.querySelector(".location").innerText = city;
     makeVisible(document.querySelector(".no-results-message"));
     makeInvisible(document.querySelector(".horizontal-scroll-instruction"));
-  } else {
-    makeInvisible(document.querySelector(".no-results-message"));
-    makeVisible(document.querySelector(".horizontal-scroll-instruction"));
-
-    housesForSale.forEach(houseData => {
-      let newHouse = createHouseElement();
-      setHouseImage(newHouse, houseData);
-      setHouseDescription(newHouse, houseData);
-      viewHouseInNewTabOnClick(newHouse, houseData);
-      
-      if (visibleHouses >= 10) {
-        newHouse.classList.add("invisible");
-      }
-  
-      housesForSaleContainer.append(newHouse);
-      visibleHouses++;
-    });
+    return;
   }
+
+  let visibleHouses = 0;
+
+  makeInvisible(document.querySelector(".no-results-message"));
+  makeVisible(document.querySelector(".horizontal-scroll-instruction"));
+
+  housesForSale.forEach(houseData => {
+    let newHouse = createHouseElement();
+    setHouseImage(newHouse, houseData);
+    setHouseDescription(newHouse, houseData);
+    viewHouseInNewTabOnClick(newHouse, houseData);
+    
+    if (visibleHouses >= 10) {
+      newHouse.classList.add("invisible");
+    }
+
+    housesForSaleContainer.append(newHouse);
+    visibleHouses++;
+  });
 }
 
 
