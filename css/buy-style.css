@@ -12,6 +12,14 @@ code {
   display: none;
 }
 
+.far.fa-heart {
+  color: var(--white);
+}
+
+.fas.fa-heart {
+  color: var(--red);
+}
+
 /*=====================================
 site header
 =====================================*/
@@ -176,14 +184,7 @@ featured houses
   position: absolute;
   top: 1rem;
   right: 1rem;
-  color: var(--white);
   z-index: 1;
-  cursor: pointer;
-  transition: color 0.3s ease-in-out;
-}
-
-.house .favorite:hover {
-  color: var(--red);
 }
 
 .house .house-description-container {

@@ -1,3 +1,6 @@
+/*=====================================
+bindings
+=====================================*/
 const responses = [
   "What can I help you with?",
   "One moment, please!",
@@ -30,6 +33,25 @@ const guideLinks = document.querySelectorAll(".guide-link");
 const moreMarketsButton = document.querySelector(".more-markets-btn");
 const moreStatesButton = document.querySelector(".more-states-btn");
 
+/*=====================================
+event listeners
+=====================================*/
+signUpForm.querySelector(".close-form").onclick = hideSignupForm;
+signUpForm.querySelector(".cancel-btn").onclick = hideSignupForm;
+signUpForm.querySelector(".log-in").addEventListener("click", hideSignupForm);
+signUpForm.querySelector(".log-in").addEventListener("click",showSigninForm);
+
+signInForm.querySelector(".close-form").onclick = hideSigninForm;
+signInForm.querySelector(".cancel-btn").onclick = hideSigninForm;
+
+chat.querySelector(".close-chat").onclick = closeChat;
+
+moreMarketsButton.addEventListener("click", () => {
+  changeButtonText(moreMarketsButton);
+});
+moreStatesButton.addEventListener("click", () => {
+  changeButtonText(moreStatesButton);
+});
 
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);

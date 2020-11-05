@@ -380,7 +380,6 @@ forms
 .form-container {
   display: none;
   position: fixed;
-  z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
@@ -388,7 +387,7 @@ forms
   overflow: auto;
   background-color: var(--prussian-blue75);
   padding-top: 50px;
-  z-index: 2;
+  z-index: 3;
 }
 
 .form-container a {

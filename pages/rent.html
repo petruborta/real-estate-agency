@@ -62,7 +62,7 @@
       <div class="form-container signup-form">
         <form class="form-content zoom-in" action="">
           <div class="container">
-            <span onclick="hideSignupForm()" class="close-form">&times;</span>
+            <span class="close-form">&times;</span>
             <h1>Sign Up</h1>
             <p>Please fill in this form to create an account.</p>
             <hr>
@@ -83,18 +83,18 @@
       
             <div class="clearfix">
               <button type="submit" class="form-btn signup-btn">Sign Up</button>
-              <button type="button" onclick="hideSignupForm()" class="form-btn cancel-btn">Cancel</button>
+              <button type="button" class="form-btn cancel-btn">Cancel</button>
             </div>
 
             <hr>
-            <p>Already have an account? | <a href="#" onclick="hideSignupForm();showSigninForm()">Log In</a></p>
+            <p>Already have an account? | <a href="#" class="log-in">Log In</a></p>
           </div>
         </form>
       </div>
 
       <div class="form-container signin-form">
         <form class="form-content zoom-in" action="">
-          <span onclick="hideSigninForm()" class="close-form">&times;</span>
+          <span class="close-form">&times;</span>
           <div class="avatar-container">
             <img src="../images/user-avatar-sm.png" alt="Avatar" class="avatar">
           </div>
@@ -113,7 +113,7 @@
           </div>
       
           <div class="container cancel">
-            <button type="button" onclick="hideSigninForm()" class="form-btn cancel-btn">Cancel</button>
+            <button type="button" class="form-btn cancel-btn">Cancel</button>
             <span class="forgot-password">Forgot <a href="#">password</a> ?</span>
           </div>
         </form>
@@ -123,7 +123,7 @@
         <div class="chat-header">
           <h3>LRS LIVE CHAT</h3>
           <p>We are online</p>
-          <span onclick="closeChat()" class="close-chat">&times;</span>
+          <span class="close-chat">&times;</span>
         </div>
         <div class="chat-messages">
           <p class="response message">Hello, dear customer!</p>
@@ -204,7 +204,7 @@
               <li><a href="#">Las Vegas Real Estate</a></li>
               <li><a href="#">Denver Real Estate</a></li>
             </ul>
-            <span class="more-btn more-markets-btn" onclick="changeButtonText(this)">Show more</span>
+            <span class="more-btn more-markets-btn">Show more</span>
           </div>
 
           <div class="col-popular-states">
@@ -226,7 +226,7 @@
               <li><a href="#">Arizona Real Estate</a></li>
               <li><a href="#">Hawaii Real Estate</a></li>
             </ul>
-            <span class="more-btn more-states-btn" onclick="changeButtonText(this)">Show more</span>
+            <span class="more-btn more-states-btn">Show more</span>
           </div>
         </div>
       </div>
