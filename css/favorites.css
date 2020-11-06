@@ -1,0 +1,111 @@
+/*=====================================
+general
+=====================================*/
+.page-description,
+section.favorite-houses {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/*=====================================
+site header
+=====================================*/
+.site-header {
+  height: 100px;
+}
+
+.page-description {
+  padding: 0 2rem;
+}
+
+.page-description h2 {
+  margin-bottom: 1rem;
+}
+
+/*=====================================
+favorite houses
+=====================================*/
+section.favorite-houses {
+  margin-bottom: 15rem;
+}
+
+.favorite-houses-container {
+  margin-bottom: 3rem;
+  padding: 1rem 0 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.house {
+  text-align: left;
+}
+
+/*=====================================
+no favorite houses
+=====================================*/
+.no-favorite-houses-container {
+  width: 95%;
+  max-width: 350px;
+  margin: 5rem auto 0 auto;
+}
+
+.no-favorite-houses-container h2 {
+  margin-bottom: 1rem;
+}
+
+.no-favorite-houses-container img {
+  height: auto;
+  width: 200px;
+  margin-bottom: 4rem;
+  background: radial-gradient(farthest-side at 50% 60%, var(--marigold), transparent);
+  object-fit: cover;
+  transition: width 0.3s ease-in-out;
+}
+
+/*=====================================
+media queries
+=====================================*/
+@media (min-width: 576px) {
+  /*=====================================
+  no favorite houses
+  =====================================*/
+  .no-favorite-houses-container {
+    max-width: 500px;
+  }
+
+  .no-favorite-houses-container img {
+    width: 250px;
+  }
+}
+
+
+
+
+@media (min-width: 768px) {
+  /*=====================================
+  no favorite houses
+  =====================================*/
+  .no-favorite-houses-container {
+    max-width: 650px;
+  }
+
+  .no-favorite-houses-container img {
+    width: 300px;
+  }
+}
+
+
+
+
+@media (min-width: 1024px) {
+  /*=====================================
+  no favorite houses
+  =====================================*/
+  .no-favorite-houses-container {
+    max-width: 800px;
+  }
+
+  .no-favorite-houses-container img {
+    width: 350px;
+  }
+}

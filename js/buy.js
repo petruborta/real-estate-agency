@@ -116,13 +116,13 @@ const showAllButton = document.querySelector(".show-all-btn");
 /*=====================================
 event listeners
 =====================================*/
-searchButton.onclick = makeCall;
+if (searchButton) { searchButton.onclick = makeCall; }
 
-previousHouseButton.onclick = slideLeft;
-nextHouseButton.onclick = slideRight;
+if (previousHouseButton) { previousHouseButton.onclick = slideLeft; }
+if (nextHouseButton) { nextHouseButton.onclick = slideRight; }
 
-showMoreButton.onclick = showMoreHouses;
-showAllButton.onclick = showAllHouses;
+if (showMoreButton) { showMoreButton.onclick = showMoreHouses; }
+if (showAllButton) { showAllButton.onclick = showAllHouses; }
 
 (
   function () {
@@ -152,9 +152,9 @@ function updateSlideshowBindings() {
   slidesToRight = slides - 1;
   factor = window.innerWidth < 1024 ? 1 : 0.5;
 
-  slideshowElements.style.transform = "translateX(0)";
-  makeInvisible(previousHouseButton);
-  makeVisible(nextHouseButton);
+  if (slideshowElements) { slideshowElements.style.transform = "translateX(0)"; }
+  if (previousHouseButton) { makeInvisible(previousHouseButton); }
+  if (nextHouseButton) { makeVisible(nextHouseButton); }
 }
 
 function getFeaturedHousesPerSlide() {
@@ -271,14 +271,14 @@ function extractDataOfInterest(responseText, houses) {
       house.beds,
       house.building_size,
       house.thumbnail
-    ))
+    ));
   });
 }
 
 function resetForm() {
   inputLocation.value = "";
   selectMinPrice.selectedIndex = 0;
-  selectMinPrice.selectedIndex = 0;
+  selectMaxPrice.selectedIndex = 0;
 }
 
 /*=====================================
@@ -310,13 +310,8 @@ function setFeaturedHousesContaierTitle() {
 
 function addFeaturedHousesToContainer() {
   featuredHouses.forEach(houseData => {
-    let newHouse = createHouseElement(true);
-
-    setHouseImage(newHouse, houseData);
-    setHouseDescription(newHouse, houseData);
-    viewHouseInNewTabOnClick(newHouse, houseData);
-
-    slideshowElements.append(newHouse);
+    let newHouse = addHousesToContainer(slideshowElements, houseData);
+    isFavoriteHouse(favoriteHouses, newHouse.id);
   });
 }
 
@@ -398,17 +393,13 @@ function addHousesForSaleToContainer() {
   makeVisible(document.querySelector(".horizontal-scroll-instruction"));
 
   housesForSale.forEach(houseData => {
-    let newHouse = createHouseElement(false);
-
-    setHouseImage(newHouse, houseData);
-    setHouseDescription(newHouse, houseData);
-    viewHouseInNewTabOnClick(newHouse, houseData);
+    let newHouse = addHousesToContainer(housesForSaleContainer, houseData);
+    
+    isFavoriteHouse(favoriteHouses, newHouse.id);
     
     if (visibleHouses >= 10) {
       makeInvisible(newHouse);
     }
-
-    housesForSaleContainer.append(newHouse);
     visibleHouses++;
   });
 }
@@ -460,6 +451,19 @@ function scrollToHousesForSale() {
 /*=====================================
 house element functions
 =====================================*/
+function addHousesToContainer(container, houseData) {
+  let newHouse = createHouseElement(false);
+  newHouse.id = houseData.getPropertyID();
+
+  setHouseImage(newHouse, houseData);
+  setHouseDescription(newHouse, houseData);
+  viewHouseInNewTabOnClick(newHouse, houseData);
+
+  container.append(newHouse);
+
+  return newHouse;
+}
+
 function createHouseElement(featured) {
   let house = document.createElement("div");
   house.classList.add("house");
@@ -486,11 +490,11 @@ function createFavoriteElement() {
   favorite.append(emptyHeart);
   favorite.append(filledHeart);
 
-  emptyHeart.addEventListener("click", addHouseToFavorite);
+  emptyHeart.addEventListener("click", () => { addHouseToFavorites(emptyHeart); });
   emptyHeart.addEventListener("click", () => { makeInvisible(emptyHeart); });
   emptyHeart.addEventListener("click", () => { makeVisible(emptyHeart.nextElementSibling); });
 
-  filledHeart.addEventListener("click", removeHouseFromFavorite);
+  filledHeart.addEventListener("click", () => { removeHouseFromFavorites(filledHeart); });
   filledHeart.addEventListener("click", () => { makeInvisible(filledHeart); });
   filledHeart.addEventListener("click", () => { makeVisible(filledHeart.previousElementSibling); });
 
@@ -636,10 +640,72 @@ function viewHouseInNewTabOnClick(house, houseData) {
   }
 }
 
-function addHouseToFavorite() {
+function addHouseToFavorites(emptyHeartElement) {
+  let favoriteElement = emptyHeartElement.parentNode;
+  let houseElement = favoriteElement.parentNode;
+  let favoriteHouse;
+
+  if (houseElement.classList.contains("featured-house")) {
+    favoriteHouse = getHouseData(featuredHouses, houseElement.id);
+    favoriteHouses.push(favoriteHouse);
+  } else {
+    favoriteHouse = getHouseData(housesForSale, houseElement.id);
+    favoriteHouses.push(favoriteHouse);
+  }
+
+  updateLocalStorage("favoriteHouses", favoriteHouses);
   clickedOnHeart = true;
 }
 
-function removeHouseFromFavorite() {
+function removeHouseFromFavorites(filledHeartElement) {
+  let favoriteElement = filledHeartElement.parentNode;
+  let houseElement = favoriteElement.parentNode;
+
+  for (let i = 0; i < favoriteHouses.length; ++i) {
+    if (favoriteHouses[i].property_id == houseElement.id) {
+      favoriteHouses.splice(i, 1);
+      if (document.title == "Favorite houses") {
+        houseElement.remove();
+      }
+      break;
+    }
+  }
+
+  updateLocalStorage("favoriteHouses", favoriteHouses);
   clickedOnHeart = true;
+}
+
+function getHouseData(houses, houseID) {
+  for (let i = 0; i < houses.length; ++i) {
+    if (houses[i].getPropertyID() == houseID) {
+      return {
+        property_id: houses[i].getPropertyID(),
+        rdc_web_url: houses[i].getRedWebURL(),
+        address: houses[i].getAddress(),
+        price: houses[i].getPrice(),
+        baths: houses[i].getBaths(),
+        beds: houses[i].getBeds(),
+        building_size: houses[i].getBuildingSize(),
+        thumbnail: houses[i].getThumbnail()
+      };
+    }
+  }
+}
+
+function isFavoriteHouse(houses, houseID) {
+  for (let i = 0; i < houses.length; ++i) {
+    if (houses[i].property_id == houseID) {
+      let favoriteElement = document.getElementById(houseID).childNodes[0];
+      let emptyHeartElement = favoriteElement.childNodes[0];
+      let filledHeartElement = favoriteElement.childNodes[1];
+
+      makeInvisible(emptyHeartElement);
+      makeVisible(filledHeartElement);
+      break;
+    }
+  }
+}
+
+function updateLocalStorage(bindingName, binding) {
+  localStorage.setItem(bindingName, JSON.stringify(binding));
 }

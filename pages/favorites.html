@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    <title>Lion Real Estate</title>
+  <head>
+    <title>Favorite houses</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="fontawesome/css/all.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../fontawesome/css/all.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/favorites.css">
+    <link rel="stylesheet" href="../css/buy-style.css">
   </head>
   <body>
     <header class="site-header">
       <div class="header-main-bar">
         <div class="logo-container">
-          <a href="#"><img class="logo" src="images/logo-inline-sm.png" alt="Lion Real Estate logo"></a>
+          <a href="../index.html"><img class="logo" src="../images/logo-inline.png" alt="Lion Real Estate logo"></a>
         </div>
 
         <nav class="header-main-nav">
           <ul class="header-menu-items">
-            <li><a class="header-menu-item" href="pages/buy.html">Buy</a></li>
-            <li><a class="header-menu-item" href="pages/rent.html">Rent</a></li>
-            <li><a class="header-menu-item" href="pages/sell.html">Sell</a></li>
-            <li><a class="header-menu-item" href="pages/sold.html">Sold</a></li>
-            <li><a class="header-menu-item" href="pages/mortgage.html">Mortgage</a></li>
+            <li><a class="header-menu-item" href="buy.html">Buy</a></li>
+            <li><a class="header-menu-item" href="rent.html">Rent</a></li>
+            <li><a class="header-menu-item" href="sell.html">Sell</a></li>
+            <li><a class="header-menu-item" href="sold.html">Sold</a></li>
+            <li><a class="header-menu-item" href="mortgage.html">Mortgage</a></li>
             <hr>
             <li class="contact-detail">
               <a href="tel:123-456-7890">123-456-7890</a>
@@ -39,7 +41,7 @@
           <i class="header-account fas fa-user-circle"></i>
           <div class="account-tooltip">
             <h3>My Account</h3>
-            <button class="tooltip-btn"><a href="pages/favorites.html">My Favorites</a></button>
+            <button class="tooltip-btn"><a href="#">My Favorites</a></button>
             <button class="tooltip-btn signup-btn">Create Account</button>
             <button class="tooltip-btn signin-btn">Sign In Now</button>
           </div>
@@ -56,15 +58,6 @@
         <div class="header-menu-btn">
           <div class="header-menu-btn-lines"></div>
         </div>
-      </div>
-
-      <div class="slogan-container">
-        <h1 class="slogan"><span class="company-name">LION REAL ESTATE</span><br>is the <span class="blue">King</span><br>of Real Estate</h1>
-      </div>
-
-      <div class="explore-btn">
-        <span>EXPLORE</span>
-        <i class="fas fa-chevron-down"></i>
       </div>
 
       <div class="form-container signup-form">
@@ -104,7 +97,7 @@
         <form class="form-content zoom-in" action="">
           <span class="close-form">&times;</span>
           <div class="avatar-container">
-            <img src="images/user-avatar-sm.png" alt="Avatar" class="avatar">
+            <img src="../images/user-avatar-sm.png" alt="Avatar" class="avatar">
           </div>
       
           <div class="container">
@@ -142,81 +135,23 @@
           <button class="send-message-btn">SEND</button>
         </div>
       </div>
+
+      <div class="page-description">
+        <h2>Your favorite houses</h2>
+        <p>Keep track of the houses you are interested in at a distance of one click.</p>
+      </div>
     </header>
 
     <main class="main-page">
-      <section class="guides">
-        <div class="guides-content-container">
-          <img class="guides-content-container-bg" src="images/guides-bg.jpg" alt="Guides background image">
+      <section class="favorite-houses">
+        <div class="favorite-houses-container">
           
-          <div class="guides-text-container">
-            <h1 class="section-title">Lion Real Estate Guides</h1>
-            <h3 class="section-subtitle">Everything you need to know when looking at different types of homes. All in one place.</h3>
-            <div class="guide buyer-guide">
-              <div class="img-container"></div>
-              <div class="text-container">
-                <h2 class="guide-title">Buyer Guides</h2>
-                <p class="guide-description">Everything you need to know about homebuying.</p>
-                <a class="guide-link buy" href="#">How to buy<i class="fas fa-arrow-right"></i></a>
-              </div>
-            </div>
-
-            <div class="guide renter-guide">
-              <div class="img-container"></div>
-              <div class="text-container">
-                <h2 class="guide-title">Renter Guides</h2>
-                <p class="guide-description">Everything you need to know about renting.</p>
-                <a class="guide-link rent" href="#">How to rent<i class="fas fa-arrow-right"></i></a>
-              </div>
-            </div>
-
-            <div class="guide seller-guide">
-              <div class="img-container"></div>
-              <div class="text-container">
-                <h2 class="guide-title">Seller Guides</h2>
-                <p class="guide-description">Everything you need to know about selling your house.</p>
-                <a class="guide-link sell" href="#">How to sell<i class="fas fa-arrow-right"></i></a>
-              </div>
-            </div>
-            <a class="all-guides-btn" href="#">See all the guides</a>
-          </div>
         </div>
 
-        <div class="guides-img-container"></div>
-      </section>
-
-      <section class="actions">
-        <div class="actions-content-container">
-          <h1 class="section-title">Lion Real Estate Options</h1>
-          <h3 class="section-subtitle">We have the most listings and constant updates. So you’ll never miss out.</h3>
-          <div class="actions-text-container">
-            <div class="action buy-action">
-              <div class="img-container"></div>
-              <div class="text-container">
-                <h2 class="action-title">Buy a home</h2>
-                <p class="action-description">Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.</p>
-                <a class="action-link" href="pages/buy.html">Search homes</a>
-              </div>
-            </div>
-
-            <div class="action rent-action">
-              <div class="img-container"></div>
-              <div class="text-container">
-                <h2 class="action-title">Rent a home</h2>
-                <p class="action-description">We’re creating a seamless online experience – from shopping on the largest rental network, to applying, to paying rent.</p>
-                <a class="action-link" href="pages/rent.html">Find rentals</a>
-              </div>
-            </div>
-
-            <div class="action sell-action">
-              <div class="img-container"></div>
-              <div class="text-container">
-                <h2 class="action-title">Sell a home</h2>
-                <p class="action-description">Whether you sell with new Lion Real Estate or take another approach, we’ll help you navigate the path to a successful sale.</p>
-                <a class="action-link" href="pages/sell.html">See your options</a>
-              </div>
-            </div>
-          </div>
+        <div class="no-favorite-houses-container">
+          <img src="../images/favorite-house.png" alt="House with a heart in center.">
+          <h2>You don't have any favorite house</h2>
+          <p>You can add a house to favorites by clicking on the heart in the upper right corner.</p>
         </div>
       </section>
     </main>
@@ -314,7 +249,7 @@
 
       <div class="copyrights-container">
         <div class="logo-container">
-          <a href="#"><img class="logo" src="images/logo-inline.png" alt="Lion Real Estate logo"></a>
+          <a href="#"><img class="logo" src="../images/logo-inline.png" alt="Lion Real Estate logo"></a>
         </div>
         <div class="copyrights-text">
           <a href="#"><h3>Do Not Sell My Personal information</h3></a>
@@ -329,10 +264,12 @@
       </div>
 
       <div class="footer-img-container">
-        <img class="footer-img" src="images/footer-img.png" alt="City art">
+        <img class="footer-img" src="../images/footer-img.png" alt="City art">
       </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/buy.js"></script>
+    <script src="../js/favorites.js"></script>
   </body>
 </html>

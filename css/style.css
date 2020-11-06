@@ -239,13 +239,18 @@ header right nav
 }
 
 .account-tooltip .tooltip-btn {
+  line-height: 35px;
   width: 120px;
-  padding: 1rem 0;
   margin-top: 1rem;
   border: 1px solid var(--gray);
   cursor: pointer;
   opacity: 0.7;
   transition: opacity 0.3s ease-in-out;
+}
+
+.account-tooltip .tooltip-btn a {
+  display: block;
+  color: inherit;
 }
 
 .account-tooltip .tooltip-btn:last-child {
@@ -315,7 +320,7 @@ slogan
   position: absolute;
   display: flex;
   align-items: center;
-  background: radial-gradient(farthest-side at 0% 50%,var(--marigold), transparent);
+  background: radial-gradient(farthest-side at 0% 50%, var(--marigold), transparent);
   z-index: 0;
 }
 
