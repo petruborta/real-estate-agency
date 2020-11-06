@@ -142,9 +142,7 @@ if (showAllButton) { showAllButton.onclick = showAllHouses; }
 
 updateSlideshowBindings();
 
-window.onresize = () => {
-  updateSlideshowBindings();
-}
+window.addEventListener("resize", updateSlideshowBindings);
 
 function updateSlideshowBindings() {
   featuredHousesPerSlide = getFeaturedHousesPerSlide();

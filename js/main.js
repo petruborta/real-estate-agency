@@ -13,7 +13,7 @@ const mainBar = document.querySelector(".header-main-bar");
 const mainNav = document.querySelector(".header-main-nav");
 const headerAccountButton = document.querySelector(".header-account");
 const headerChatButton = document.querySelector(".header-chat");
-const menuButton = document.querySelector(".header-menu-btn")
+const menuButton = document.querySelector(".header-menu-btn");
 
 const accountTooltip = document.querySelector(".account-tooltip");
 const accountTooltipSignUpButton = document.querySelector(".signup-btn");
