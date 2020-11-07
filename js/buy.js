@@ -116,7 +116,11 @@ const showAllButton = document.querySelector(".show-all-btn");
 /*=====================================
 event listeners
 =====================================*/
-if (searchButton) { searchButton.onclick = makeCall; }
+if (searchButton) { 
+  searchButton.onclick = () => { 
+    makeCall(housesForSale, housesForSaleContainer, createHouseFromHouseForSaleData, "for-sale", "relevance");
+  } 
+}
 
 if (previousHouseButton) { previousHouseButton.onclick = slideLeft; }
 if (nextHouseButton) { nextHouseButton.onclick = slideRight; }
@@ -125,16 +129,18 @@ if (showMoreButton) { showMoreButton.onclick = showMoreHouses; }
 if (showAllButton) { showAllButton.onclick = showAllHouses; }
 
 (
-  function () {
-    let n = Math.floor(Math.random() * 10);
+  function initiateBindings() {
+    if (document.title == "Buy Home") {
+      let n = Math.floor(Math.random() * 10);
 
-    limit = 6;
-    minPrice = 1;
-    maxPrice = 10000000;
-    city = topCities[n]["city_name"];
-    stateCode = topCities[n]["state_code"];
+      limit = 6;
+      minPrice = 1;
+      maxPrice = 10000000;
+      city = topCities[n]["city_name"];
+      stateCode = topCities[n]["state_code"];
 
-    //getFeaturedHouses();
+      //getFeaturedHouses();
+    }
 
     limit = 50;
   }
@@ -172,7 +178,7 @@ function getFeaturedHousesPerSlide() {
 /*=====================================
 search form functions
 =====================================*/
-function makeCall() {
+function makeCall(houses, container, houseType, action, sort) {
   if (!inputLocation.value) {
     alert("Please introduce lacation.");
     return;
@@ -196,15 +202,15 @@ function makeCall() {
     return;
   }
 
-  clearData();
-  getCityAndStateCode(listHousesForSale);
+  clearData(houses, container);
+  getCityAndStateCode(listHouses, houses, container, houseType, action, sort);
 }
 
-function clearData() {
+function clearData(houses, container) {
   city = "";
   stateCode = "";
-  housesForSale = [];
-  housesForSaleContainer.innerHTML = "";
+  houses = [];
+  container.innerHTML = "";
 }
 
 function processPriceRange() {
@@ -219,15 +225,17 @@ function getSelectedOptionNumericValue(select) {
   if (value.charAt(value.length - 1) == "k") {
     value = value.slice(0, -1);
     value = parseFloat(value) * 1000;
-  } else {
+  } else if (value.charAt(value.length - 1) == "M") {
     value = value.slice(0, -1);
     value = parseFloat(value) * 1000000;
+  } else {
+    value = parseFloat(value);
   }
 
   return value;
 }
 
-function getCityAndStateCode(callback) {
+function getCityAndStateCode(callback, houses, container, houseType, action, sort) {
   const data = null;
   const xhr = new XMLHttpRequest();
 
@@ -238,12 +246,12 @@ function getCityAndStateCode(callback) {
       if (response.autocomplete.length > 0) {
         city = response.autocomplete[0]["city"];
         stateCode = response.autocomplete[0]["state_code"];
-        callback();
+        callback(houseType, houses, container, action, sort);
       } else {
-        addHousesForSaleToContainer();
+        addHousesToContainer(houses, container);
         disableShowMoreAndShowAllButtons(true);
         makeVisible(searchResultsContainer);
-        scrollToHousesForSale();
+        scrollToResults();
         resetForm();
       }
     }
@@ -256,21 +264,25 @@ function getCityAndStateCode(callback) {
   xhr.send(data);
 }
 
-function extractDataOfInterest(responseText, houses) {
+function extractDataOfInterest(responseText, houses, houseType) {
   let response = JSON.parse(responseText);
 
-  response.properties.forEach(house => {
-    houses.push(new House(
-      house.property_id,
-      house.rdc_web_url,
-      house.address,
-      house.price,
-      house.baths,
-      house.beds,
-      house.building_size,
-      house.thumbnail
-    ));
+  response.properties.forEach(houseData => {
+    houses.push(houseType(houseData));
   });
+}
+
+function createHouseFromHouseForSaleData(houseData) {
+  return new House(
+    houseData.property_id,
+    houseData.rdc_web_url,
+    houseData.address,
+    houseData.price,
+    houseData.baths,
+    houseData.beds,
+    houseData.building_size,
+    houseData.thumbnail
+  );
 }
 
 function resetForm() {
@@ -288,7 +300,7 @@ function getFeaturedHouses() {
   
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === this.DONE) {
-      extractDataOfInterest(this.responseText, featuredHouses);
+      extractDataOfInterest(this.responseText, featuredHouses, createHouseFromHouseForSaleData);
       setFeaturedHousesContaierTitle();
       addFeaturedHousesToContainer();
       makeVisible(featuredHousesContainer);
@@ -308,7 +320,7 @@ function setFeaturedHousesContaierTitle() {
 
 function addFeaturedHousesToContainer() {
   featuredHouses.forEach(houseData => {
-    let newHouse = addHousesToContainer(slideshowElements, houseData);
+    let newHouse = addHouseToContainer(slideshowElements, houseData);
     isFavoriteHouse(favoriteHouses, newHouse.id);
   });
 }
@@ -356,29 +368,29 @@ function makeVisible(element) {
 /*=====================================
 search results functions
 =====================================*/
-function listHousesForSale() {
+function listHouses(houseType, houses, container, action, sort) {
   const data = null;
   const xhr = new XMLHttpRequest();
 
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === this.DONE) {
-      extractDataOfInterest(this.responseText, housesForSale);
-      addHousesForSaleToContainer();
+      extractDataOfInterest(this.responseText, houses, houseType);
+      addHousesToContainer(houses, container);
       disableShowMoreAndShowAllButtons(false);
       makeVisible(searchResultsContainer);
-      scrollToHousesForSale();
+      scrollToResults();
     }
   });
 
-  xhr.open("GET", `https://realtor.p.rapidapi.com/properties/v2/list-for-sale?price_min=${minPrice}&sort=relevance&price_max=${maxPrice}&sqft_min=1&city=${city}&limit=${limit}&offset=0&state_code=${stateCode}`);
+  xhr.open("GET", `https://realtor.p.rapidapi.com/properties/v2/list-${action}?price_min=${minPrice}&sort=${sort}&price_max=${maxPrice}&sqft_min=1&city=${city}&limit=${limit}&offset=0&state_code=${stateCode}`);
   xhr.setRequestHeader("x-rapidapi-host", "realtor.p.rapidapi.com");
   xhr.setRequestHeader("x-rapidapi-key", "APIkey");
 
   xhr.send(data);
 }
 
-function addHousesForSaleToContainer() {
-  if (housesForSale.length == 0) {
+function addHousesToContainer(houses, container) {
+  if (houses.length == 0) {
     document.querySelector(".span-location").innerText = city;
     makeVisible(document.querySelector(".no-results-message"));
     makeInvisible(document.querySelector(".horizontal-scroll-instruction"));
@@ -390,8 +402,8 @@ function addHousesForSaleToContainer() {
   makeInvisible(document.querySelector(".no-results-message"));
   makeVisible(document.querySelector(".horizontal-scroll-instruction"));
 
-  housesForSale.forEach(houseData => {
-    let newHouse = addHousesToContainer(housesForSaleContainer, houseData);
+  houses.forEach(houseData => {
+    let newHouse = addHouseToContainer(container, houseData);
     
     isFavoriteHouse(favoriteHouses, newHouse.id);
     
@@ -440,7 +452,7 @@ function disableShowMoreAndShowAllButtons(value) {
   }
 }
 
-function scrollToHousesForSale() {
+function scrollToResults() {
   searchResultsContainer.scrollIntoView({ 
     behavior: 'smooth' 
   });
@@ -449,7 +461,7 @@ function scrollToHousesForSale() {
 /*=====================================
 house element functions
 =====================================*/
-function addHousesToContainer(container, houseData) {
+function addHouseToContainer(container, houseData) {
   let newHouse = createHouseElement(false);
   newHouse.id = houseData.getPropertyID();
 
@@ -643,13 +655,21 @@ function addHouseToFavorites(emptyHeartElement) {
   let houseElement = favoriteElement.parentNode;
   let favoriteHouse;
 
-  if (houseElement.classList.contains("featured-house")) {
-    favoriteHouse = getHouseData(featuredHouses, houseElement.id);
-    favoriteHouses.push(favoriteHouse);
-  } else {
-    favoriteHouse = getHouseData(housesForSale, houseElement.id);
-    favoriteHouses.push(favoriteHouse);
+  switch(document.title) {
+    case "Buy Home": 
+      favoriteHouse = getHouseData(housesForSale, houseElement.id);
+      break;
+    case "Rent Home":
+      favoriteHouse = getHouseData(housesForRent, houseElement.id);
+      break;
+    case "Sold Houses":
+      favoriteHouse = getHouseData(soldHouses, houseElement.id);
+      break;
+    default:
+      favoriteHouse = getHouseData(featuredHouses, houseElement.id);
   }
+
+  favoriteHouses.push(favoriteHouse);
 
   updateLocalStorage("favoriteHouses", favoriteHouses);
   clickedOnHeart = true;

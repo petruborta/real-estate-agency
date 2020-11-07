@@ -1,4 +1,28 @@
-.site-header {
-  height: 100vh;
-  background: khaki;
+/*=====================================
+section houses for sale
+=====================================*/
+section.houses-for-rent {
+  max-width: 1200px;
+  text-align: left;
+  margin: 3rem auto 10rem auto;
+}
+
+/*=====================================
+search form
+=====================================*/
+.search-houses-btn {
+  background-color: var(--marigold50);
+}
+
+.search-houses-btn:hover {
+  background-color: var(--marigold);
+}
+
+/*=====================================
+search result
+=====================================*/
+.houses-for-rent-container {
+  padding: 1rem 0 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
 }

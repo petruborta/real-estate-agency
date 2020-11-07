@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../fontawesome/css/all.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/buy-style.css">
     <link rel="stylesheet" href="../css/rent-style.css">
   </head>
   <body>
@@ -134,11 +135,86 @@
           <button class="send-message-btn">SEND</button>
         </div>
       </div>
+
+      <div class="search-container">
+        <h1>Houses for rent near me</h1>
+        <p>Find houses for rent near you. View photos, open house information, 
+        and property details for nearby real estate.</p>
+        
+        <div class="reverse-container">
+          <img src="../images/rent-house-clipart-sm.png" alt="House clipart">
+
+          <form class="search-form">
+            <label for="location">Location
+              <input type="text" name="location" id="location" placeholder="City, district, place (state for precision)" required>
+            </label>
+            <label for="min-price">Price range
+              <div class="price-range">
+                <select name="min-price" id="min-price" required>
+                  <option value="">No min</option>
+                  <option value="">&#36;0</option>
+                  <option value="">&#36;200</option>
+                  <option value="">&#36;300</option>
+                  <option value="">&#36;400</option>
+                  <option value="">&#36;500</option>
+                  <option value="">&#36;600</option>
+                  <option value="">&#36;700</option>
+                  <option value="">&#36;800</option>
+                  <option value="">&#36;900</option>
+                  <option value="">&#36;1000</option>
+                  <option value="">&#36;1100</option>
+                  <option value="">&#36;1200</option>
+                  <option value="">&#36;1300</option>
+                  <option value="">&#36;1400</option>
+                  <option value="">&#36;1500</option>
+                  <option value="">&#36;1600</option>
+                  <option value="">&#36;1700</option>
+                  <option value="">&#36;1800</option>
+                  <option value="">&#36;1900</option>
+                </select>
+                <select name="max-price" id="max-price">
+                  <option value="">No max</option>
+                  <option value="">&#36;2000</option>
+                  <option value="">&#36;2200</option>
+                  <option value="">&#36;2400</option>
+                  <option value="">&#36;2600</option>
+                  <option value="">&#36;2800</option>
+                  <option value="">&#36;3000</option>
+                  <option value="">&#36;3500</option>
+                  <option value="">&#36;4000</option>
+                  <option value="">&#36;4500</option>
+                  <option value="">&#36;5k</option>
+                  <option value="">&#36;6k</option>
+                  <option value="">&#36;7k</option>
+                  <option value="">&#36;8k</option>
+                  <option value="">&#36;9k</option>
+                  <option value="">&#36;10k</option>
+                  <option value="">&#36;20k</option>
+                  <option value="">&#36;30k</option>
+                  <option value="">&#36;40k</option>
+                  <option value="">&#36;50k</option>
+                </select>
+              </div>
+            </label>
+            <button type="button" class="search-houses-btn">Search</button>
+          </form>
+        </div>
+      </div>
     </header>
 
     <main class="main-page">
-      <section>
-
+      <section class="houses-for-rent">
+        <div class="search-results-container invisible">
+          <h2>Search results</h2>
+          <p class="no-results-message invisible">There are no houses for rent in <span class="span-location"></span> in the given price range.</p>
+          <p class="horizontal-scroll-instruction invisible">Hold <code>Shift</code> while over house description to scroll horizontally.</p>
+          <div class="houses-for-rent-container">
+            
+          </div>
+          
+          <button class="btn show-more-btn">Show more houses</button>
+          <button class="btn show-all-btn">Show all houses</button>
+        </div>
       </section>
     </main>
 
@@ -255,5 +331,7 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script src="../js/buy.js"></script>
+    <script src="../js/rent.js"></script>
   </body>
 </html>

@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../fontawesome/css/all.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/buy-style.css">
     <link rel="stylesheet" href="../css/sold-style.css">
   </head>
   <body>
@@ -134,11 +135,148 @@
           <button class="send-message-btn">SEND</button>
         </div>
       </div>
+
+      <div class="search-container">
+        <h1>Sold houses near me</h1>
+        <p>Find sold houses near you. View photos, open house information, 
+        and property details for nearby real estate.</p>
+        
+        <div class="reverse-container">
+          <img src="../images/sold-house-clipart-sm.png" alt="House clipart">
+
+          <form class="search-form">
+            <label for="location">Location
+              <input type="text" name="location" id="location" placeholder="City, district, place (state for precision)" required>
+            </label>
+            <label for="min-price">Price range
+              <div class="price-range">
+                <select name="min-price" id="min-price" required>
+                  <option value="">No min</option>
+                  <option value="">&#36;50k</option>
+                  <option value="">&#36;75k</option>
+                  <option value="">&#36;100k</option>
+                  <option value="">&#36;125k</option>
+                  <option value="">&#36;150k</option>
+                  <option value="">&#36;175k</option>
+                  <option value="">&#36;200k</option>
+                  <option value="">&#36;225k</option>
+                  <option value="">&#36;250k</option>
+                  <option value="">&#36;275k</option>
+                  <option value="">&#36;300k</option>
+                  <option value="">&#36;325k</option>
+                  <option value="">&#36;350k</option>
+                  <option value="">&#36;375k</option>
+                  <option value="">&#36;400k</option>
+                  <option value="">&#36;425k</option>
+                  <option value="">&#36;450k</option>
+                  <option value="">&#36;475k</option>
+                  <option value="">&#36;500k</option>
+                  <option value="">&#36;550k</option>
+                  <option value="">&#36;600k</option>
+                  <option value="">&#36;650k</option>
+                  <option value="">&#36;700k</option>
+                  <option value="">&#36;750k</option>
+                  <option value="">&#36;800k</option>
+                  <option value="">&#36;850k</option>
+                  <option value="">&#36;900k</option>
+                  <option value="">&#36;950k</option>
+                  <option value="">&#36;1M</option>
+                  <option value="">&#36;1.25M</option>
+                  <option value="">&#36;1.5M</option>
+                  <option value="">&#36;1.75M</option>
+                  <option value="">&#36;2M</option>
+                  <option value="">&#36;2.25M</option>
+                  <option value="">&#36;2.5M</option>
+                  <option value="">&#36;2.75M</option>
+                  <option value="">&#36;3M</option>
+                  <option value="">&#36;3.25M</option>
+                  <option value="">&#36;3.5M</option>
+                  <option value="">&#36;3.75M</option>
+                  <option value="">&#36;4M</option>
+                  <option value="">&#36;4.25M</option>
+                  <option value="">&#36;4.5M</option>
+                  <option value="">&#36;4.75M</option>
+                  <option value="">&#36;5M</option>
+                  <option value="">&#36;6M</option>
+                  <option value="">&#36;7M</option>
+                  <option value="">&#36;8M</option>
+                  <option value="">&#36;9M</option>
+                  <option value="">&#36;10M</option>
+                </select>
+                <select name="max-price" id="max-price">
+                  <option value="">No max</option>
+                  <option value="">&#36;50k</option>
+                  <option value="">&#36;75k</option>
+                  <option value="">&#36;100k</option>
+                  <option value="">&#36;125k</option>
+                  <option value="">&#36;150k</option>
+                  <option value="">&#36;175k</option>
+                  <option value="">&#36;200k</option>
+                  <option value="">&#36;225k</option>
+                  <option value="">&#36;250k</option>
+                  <option value="">&#36;275k</option>
+                  <option value="">&#36;300k</option>
+                  <option value="">&#36;325k</option>
+                  <option value="">&#36;350k</option>
+                  <option value="">&#36;375k</option>
+                  <option value="">&#36;400k</option>
+                  <option value="">&#36;425k</option>
+                  <option value="">&#36;450k</option>
+                  <option value="">&#36;475k</option>
+                  <option value="">&#36;500k</option>
+                  <option value="">&#36;550k</option>
+                  <option value="">&#36;600k</option>
+                  <option value="">&#36;650k</option>
+                  <option value="">&#36;700k</option>
+                  <option value="">&#36;750k</option>
+                  <option value="">&#36;800k</option>
+                  <option value="">&#36;850k</option>
+                  <option value="">&#36;900k</option>
+                  <option value="">&#36;950k</option>
+                  <option value="">&#36;1M</option>
+                  <option value="">&#36;1.25M</option>
+                  <option value="">&#36;1.5M</option>
+                  <option value="">&#36;1.75M</option>
+                  <option value="">&#36;2M</option>
+                  <option value="">&#36;2.25M</option>
+                  <option value="">&#36;2.5M</option>
+                  <option value="">&#36;2.75M</option>
+                  <option value="">&#36;3M</option>
+                  <option value="">&#36;3.25M</option>
+                  <option value="">&#36;3.5M</option>
+                  <option value="">&#36;3.75M</option>
+                  <option value="">&#36;4M</option>
+                  <option value="">&#36;4.25M</option>
+                  <option value="">&#36;4.5M</option>
+                  <option value="">&#36;4.75M</option>
+                  <option value="">&#36;5M</option>
+                  <option value="">&#36;6M</option>
+                  <option value="">&#36;7M</option>
+                  <option value="">&#36;8M</option>
+                  <option value="">&#36;9M</option>
+                  <option value="">&#36;10M</option>
+                </select>
+              </div>
+            </label>
+            <button type="button" class="search-houses-btn">Search</button>
+          </form>
+        </div>
+      </div>
     </header>
 
     <main class="main-page">
-      <section>
-
+      <section class="sold-houses">
+        <div class="search-results-container invisible">
+          <h2>Search results</h2>
+          <p class="no-results-message invisible">There are no sold houses in <span class="span-location"></span> in the given price range.</p>
+          <p class="horizontal-scroll-instruction invisible">Hold <code>Shift</code> while over house description to scroll horizontally.</p>
+          <div class="sold-houses-container">
+            
+          </div>
+          
+          <button class="btn show-more-btn">Show more houses</button>
+          <button class="btn show-all-btn">Show all houses</button>
+        </div>
       </section>
     </main>
 
@@ -255,5 +393,7 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script src="../js/buy.js"></script>
+    <script src="../js/sold.js"></script>
   </body>
 </html>

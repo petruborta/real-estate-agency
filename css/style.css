@@ -14,6 +14,7 @@ general
   --dark-gray: rgb(30, 30, 30);
   --gray: gray;
   --red: red;
+  --red50: rgba(255, 0, 0, 0.5);
   --marigold: #f0a202ff;
   --marigold15: rgba(240, 161, 2, 0.15);
   --marigold50: rgba(240, 161, 2, 0.5);
@@ -829,9 +830,9 @@ section.guides {
 /*=====================================
 section actions
 =====================================*/
-.actions {
+section.actions {
   max-width: 500px;
-  margin: 3rem auto 10rem auto;
+  margin: 5rem auto 10rem auto;
   transition: all 0.3s ease-in-out;
 }
 
@@ -1489,7 +1490,7 @@ media queries
   /*=====================================
   section actions
   =====================================*/
-  .actions {
+  section.actions {
     max-width: 750px;
   }
 
@@ -1572,11 +1573,11 @@ media queries
   /*=====================================
   section actions
   =====================================*/
-  .actions {
+  section.actions {
     max-width: 1200px;
   }
 
-  .actions-text-container {
+  section.actions .actions-text-container {
     display: flex;
   }
 

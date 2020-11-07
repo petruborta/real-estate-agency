@@ -21,7 +21,7 @@ function addFavoriteHousesToContainer() {
       houseData.building_size,
       houseData.thumbnail
     );
-    let newHouse = addHousesToContainer(favoriteHousesContainer, house);
+    let newHouse = addHouseToContainer(favoriteHousesContainer, house);
     
     let favoriteElement = newHouse.childNodes[0];
     let emptyHeartElement = favoriteElement.childNodes[0];
