@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+
 /*=====================================
 general
 =====================================*/
@@ -13,6 +15,7 @@ general
   --black75:rgba(0, 0, 0, 0.75);
   --dark-gray: rgb(30, 30, 30);
   --gray: gray;
+  --light-gray: rgb(230, 230, 230);
   --red: red;
   --red50: rgba(255, 0, 0, 0.5);
   --marigold: #f0a202ff;
@@ -37,6 +40,11 @@ body {
   font-family: 'Oxygen', sans-serif;
   font-size: 1.4rem;
   scroll-behavior: smooth;
+  background-color: #F3F4F6;
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
 }
 
 ul {
@@ -166,11 +174,7 @@ a.header-menu-item::before {
   transition: all 0.3s ease-in-out;
 }
 
-a.header-menu-item:hover:before {
-  visibility: visible;
-  width: 100%;
-}
-
+a.header-menu-item:hover:before,
 a.header-menu-item.current-page:before {
   visibility: visible;
   width: 100%;
@@ -745,7 +749,7 @@ section.guides {
 }
 
 .guide .text-container .guide-title {
-  margin-bottom: 1rem;
+  margin-bottom: rem;
 }
 
 .guide .text-container .guide-link {
@@ -840,8 +844,8 @@ section.actions {
   display: flex;
   flex-direction: column;
   text-align: left;
-  margin: 2rem;
-  border-radius: 0.25rem;
+  margin: 2rem 2rem 3rem 2rem;
+  border-radius: 5px;
   box-shadow: 0 8px 10px -3px var(--gray);
   transition: all 0.3s ease-in-out;
 }
@@ -860,7 +864,9 @@ section.actions {
 .action .img-container {
   height: 200px;
   width: 100%;
+  border-radius: 5px;
   margin: auto;
+  background-color: var(--white);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;

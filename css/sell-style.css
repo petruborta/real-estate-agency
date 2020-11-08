@@ -1,4 +1,238 @@
+/*=====================================
+general
+=====================================*/
+h1, h2 {
+  font-size: 3rem;
+}
+
+hr.divider {
+  width: 40%;
+  max-width: 500px;
+  margin: 3rem auto;
+}
+
+img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+form, input, button {
+  border-radius: 5px;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  margin-top: 3rem;
+  border: 2px solid var(--light-gray);
+  background-color: var(--light-gray);
+  transition: border 0.15s ease-in-out;
+}
+
+form:hover {
+  border: 2px solid var(--gray);
+}
+
+input, button {
+  font-size: 1.6rem;
+  padding: 1rem;
+  outline-style: none;
+}
+
+input {
+  border: none;
+  background-color: var(--light-gray);
+}
+
+button {
+  font-weight: bold;
+  border: none;
+  color: var(--white);
+  background-color: var(--prussian-blue75);
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--little-boy-blue);
+}
+
+.fas.fa-search-location {
+  font-size: 3rem;
+  color: var(--prussian-blue);
+}
+
+.fas.fa-search-location:hover {
+  color: var(--little-boy-blue);
+}
+
+/*=====================================
+site-header
+=====================================*/
 .site-header {
-  height: 100vh;
-  background: khaki;
+  height: auto;
+  margin-top: 120px;
+  background: none;
+}
+
+/*=====================================
+sell with us section
+=====================================*/
+section.sell-with-us {
+  font-size: 1.6rem;
+  max-width: 1200px;
+  margin: 0 auto 15rem auto;
+}
+
+section.sell-with-us a {
+  text-decoration: underline;
+}
+
+section.sell-with-us a:hover {
+  text-decoration: none;
+}
+
+
+.section-title {
+  margin-bottom: 2.5rem;
+}
+
+.title-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.sell-options,
+.resources {
+  margin: 0 2rem 5rem 2rem;
+}
+
+.title {
+  margin-bottom: 1rem;
+}
+
+.offers-container,
+.agents-container,
+.sell-it-yourself-container,
+.explore-container,
+.the-process-container {
+  width: 100%;
+  border-radius: 5px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  background-color: var(--white);
+}
+
+.explore-container,
+.the-process-container {
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.shadow {
+  box-shadow: 0 8px 10px 3px var(--gray);
+}
+
+.offers-img {
+  max-width: none;
+}
+
+.agents-container button,
+.sell-it-yourself-container button {
+  margin-top: 3rem;
+}
+
+.the-process-links {
+  margin-top: 2rem;
+  
+}
+
+.the-process-links a {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/*=====================================
+media queries
+=====================================*/
+@media (min-width: 768px) {
+  /*=====================================
+  sell with us section
+  =====================================*/
+  .section-title {
+    font-size: 4rem;
+  }
+
+  .offers-container,
+  .agents-container,
+  .sell-it-yourself-container,
+  .explore-container,
+  .the-process-container {
+    text-align: left;
+  }
+
+  .agents-container,
+  .explore-container,
+  .the-process-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .agents-img,
+  .explore-img,
+  .the-process-img {
+    width: 38%;
+  }
+
+  .agents-text,
+  .explore-text,
+  .the-process-text {
+    width: 60%;
+  }
+}
+
+
+
+
+@media (min-width: 1024px) {
+  /*=====================================
+  sell with us section
+  =====================================*/
+  .sell-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .offers-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+
+  .offers-img {
+    width: 64%;
+  }
+
+  .offers-text {
+    width: 34%;
+  }
+
+  .agents-container {
+    width: 64%;
+  }
+
+  .sell-it-yourself-container {
+    width: 34%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+  }
 }

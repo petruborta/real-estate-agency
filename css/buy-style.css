@@ -79,6 +79,7 @@ search form
 .search-form button {
   font-size: 1.75rem;
   padding: 1rem;
+  border-radius: 10px;
   margin-bottom: 2rem;
   outline-width: 10px;
   outline-color: var(--little-boy-blue);
@@ -101,7 +102,6 @@ search form
 
 .search-houses-btn {
   font-weight: bold;
-  border-radius: 5px;
   color: var(--white);
   background-color: var(--prussian-blue75);
   transition: background-color 0.2s ease-in-out;
