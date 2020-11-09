@@ -18,49 +18,6 @@ img {
   object-fit: cover;
 }
 
-form, input, button {
-  border-radius: 5px;
-}
-
-form {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem;
-  margin-top: 3rem;
-  border: 2px solid var(--light-gray);
-  background-color: var(--light-gray);
-  transition: border 0.15s ease-in-out;
-}
-
-form:hover {
-  border: 2px solid var(--gray);
-}
-
-input, button {
-  font-size: 1.6rem;
-  padding: 1rem;
-  outline-style: none;
-}
-
-input {
-  border: none;
-  background-color: var(--light-gray);
-}
-
-button {
-  font-weight: bold;
-  border: none;
-  color: var(--white);
-  background-color: var(--prussian-blue75);
-  cursor: pointer;
-  transition: background-color 0.15s ease-in-out;
-}
-
-button:hover {
-  background-color: var(--little-boy-blue);
-}
-
 .fas.fa-search-location {
   font-size: 3rem;
   color: var(--prussian-blue);
@@ -140,6 +97,52 @@ section.sell-with-us a:hover {
 
 .offers-img {
   max-width: none;
+}
+
+.address-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  margin-top: 3rem;
+  border: 2px solid var(--light-gray);
+  background-color: var(--light-gray);
+  transition: border 0.15s ease-in-out;
+}
+
+.address-form:hover {
+  border: 2px solid var(--gray);
+}
+
+.address-form,
+.address-form input,
+.sell-options button {
+  border-radius: 5px;
+}
+
+.address-form input,
+.sell-options button {
+  font-size: 1.6rem;
+  padding: 1rem;
+  outline-style: none;
+}
+
+.address-form input {
+  border: none;
+  background-color: var(--light-gray);
+}
+
+.sell-options button {
+  font-weight: bold;
+  border: none;
+  color: var(--white);
+  background-color: var(--prussian-blue75);
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.sell-options button:hover {
+  background-color: var(--little-boy-blue);
 }
 
 .agents-container button,
