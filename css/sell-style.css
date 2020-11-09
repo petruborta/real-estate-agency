@@ -20,6 +20,7 @@ img {
 
 .fas.fa-search-location {
   font-size: 3rem;
+  margin: 0.5rem;
   color: var(--prussian-blue);
 }
 
@@ -101,9 +102,9 @@ section.sell-with-us a:hover {
 
 .address-form {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem;
   margin-top: 3rem;
   border: 2px solid var(--light-gray);
   background-color: var(--light-gray);
@@ -124,12 +125,14 @@ section.sell-with-us a:hover {
 .sell-options button {
   font-size: 1.6rem;
   padding: 1rem;
+  margin: 0.5rem;
   outline-style: none;
 }
 
 .address-form input {
+  flex: 1 1 auto;
   border: none;
-  background-color: var(--light-gray);
+  background-color: var(--white);
 }
 
 .sell-options button {
@@ -163,6 +166,16 @@ section.sell-with-us a:hover {
 /*=====================================
 media queries
 =====================================*/
+@media (max-width: 360px) {
+  .address-form input,
+  .sell-options button {
+    width: 100%;
+  }
+}
+
+
+
+
 @media (min-width: 768px) {
   /*=====================================
   sell with us section
@@ -221,11 +234,11 @@ media queries
   }
 
   .offers-img {
-    width: 64%;
+    width: 60%;
   }
 
   .offers-text {
-    width: 34%;
+    width: 40%;
   }
 
   .agents-container {
