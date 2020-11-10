@@ -137,8 +137,206 @@
     </header>
 
     <main class="main-page">
-      <section>
+      <section class="mortgage">
+        <div class="title-container">
+          <h1 class="section-title">Mortgage Calculator</h1>
+          <h3 class="section-subtitle">Estimate your payment with our easy-to-use loan calculator.</h3>
+        </div>
 
+        <div class="mortgage-calculator-container">
+          <div class="donut-chart-container">
+
+          </div>
+
+          <div class="inputs-container">
+            <div class="simple-calculator-container">
+              <div class="input-row-container">
+                <div class="range-input-container">
+                  <label for="">Home Price
+                    <i class="fas fa-info-circle"></i>
+                    <div class="info-tooltip invisible">
+                      <p>
+                        Did you know the price of your home can affect your interest rate and 
+                        the loan type that you're eligible for? It's also used to figure out your 
+                        loan-to-value (LTV) ratio, another factor that affects your interest rate.
+                      </p>
+                    </div>
+                  </label>
+                  <input type="range" name="range-home-price" id="range-home-price" min="5000" max="1500000" step="5000" class="invisible">
+                </div>
+
+                <div class="number-input-container">
+                  <span>&#36;</span>
+                  <input type="text" name="number-home-price" id="number-home-price">
+                </div>
+              </div>
+
+              <div class="input-row-container">
+                <div class="range-input-container">
+                  <label for="">Down Payment
+                    <i class="fas fa-info-circle"></i>
+                    <div class="info-tooltip invisible">
+                      <p>
+                        The down payment is the money you pay upfront for your new home. 
+                        You'll usually need a down payment of at least 3%. FHA loans 
+                        require at least 3.5% down, and VA loans can have 0% down.
+                      </p>
+                    </div>
+                  </label>
+                  <input type="range" name="range-down-payment" id="range-down-payment" min="0" max="500000" step="5000" class="invisible">
+                </div>
+
+                <div class="double-number-input-container">
+                  <div class="number-input-container">
+                    <span>&#36;</span>
+                    <input type="text" name="number-down-payment" id="number-down-payment">
+                  </div>
+
+                  <div class="number-input-container">
+                    <input type="text" name="percent-down-payment" id="percent-down-payment">
+                    <span>&#37;</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="input-row-container">
+                <div class="range-input-container">
+                  <label for="">Interest Rate
+                    <i class="fas fa-info-circle"></i>
+                    <div class="info-tooltip invisible">
+                      <p>
+                        Your interest rate will vary based on a number of factors: 
+                        home price, down payment, credit score, and even location.
+                      </p>
+                    </div>
+                  </label>
+                  <input type="range" name="range-interest-rate" id="range-interest-rate" min="0" max="6.5" step="0.01" class="invisible">
+                </div>
+
+                <div class="number-input-container">
+                  <input type="text" name="number-interest-rate" id="number-interest-rate">
+                  <span>&#37;</span>
+                </div>
+              </div>
+
+              <div class="input-row-container">
+                <div class="range-input-container">
+                  <label for="">Loan Type
+                    <i class="fas fa-info-circle"></i>
+                    <div class="info-tooltip invisible">
+                      <p>
+                        This calculator supports different loan types. Each loan type has 
+                        a different interest rate and payment amount.<br>
+                        <a href="#">See pros and cons for each loan type.</a>
+                      </p>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="number-input-container">
+                  <select name="" id="">
+                    <option value="">30-year fixed</option>
+                    <option value="">20-year fixed</option>
+                    <option value="">15-year fixed</option>
+                    <option value="">10-year fixed</option>
+                    <option value="">FHA 30-year fixed</option>
+                    <option value="">FHA 15-year fixed</option>
+                    <option value="">VA 30-year fixed</option>
+                    <option value="">VA 15-year fixed</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="advanced-calculator-container">
+              <div class="input-row-container">
+                <div class="range-input-container">
+                  <label for="">Property Tax
+                    <i class="fas fa-info-circle"></i>
+                    <div class="info-tooltip invisible">
+                      <p>
+                        Enter your property tax rate, if known. Otherwise, the rate will default to the 
+                        local average rate for the ZIP code provided, or to the US default of 1.5%. Your 
+                        actual property tax may vary based on location and purchase price of your home.
+                      </p>
+                    </div>
+                  </label>
+                  <input type="range" name="range-property-tax" id="range-property-tax" min="0" max="6.5" step="0.01" class="invisible">
+                </div>
+
+                <div class="number-input-container">
+                  <input type="text" name="number-property-tax" id="number-property-tax">
+                  <span>&#37;</span>
+                </div>
+              </div>
+
+              <div class="input-row-container">
+                <div class="range-input-container">
+                  <label for="">Home Insurance
+                    <i class="fas fa-info-circle"></i>
+                    <div class="info-tooltip invisible">
+                      <p>
+                        Also called homeowners insurance, this is almost always required by mortgage 
+                        lenders. The annual cost can vary greatly depending on location and coverage.
+                      </p>
+                    </div>
+                  </label>
+                  <input type="range" name="range-home-insurance" id="range-home-insurance" min="0" max="10000" step="25" class="invisible">
+                </div>
+
+                <div class="number-input-container">
+                  <span>&#36;</span>
+                  <input type="text" name="number-home-insurance" id="number-home-insurance">
+                </div>
+              </div>
+
+              <div class="input-row-container">
+                <div class="range-input-container">
+                  <label for="">HOA Dues
+                    <i class="fas fa-info-circle"></i>
+                    <div class="info-tooltip invisible">
+                      <p>
+                        HOA (homeowners association) dues cover shared costs like maintenance and 
+                        upkeep of common areas. These almost always apply to condos and townhomes, 
+                        but sometimes apply to single family homes that have shared amenities.
+                      </p>
+                    </div>
+                  </label>
+                  <input type="range" name="range-HOA" id="range-HOA" min="0" max="10000" step="25" class="invisible">
+                </div>
+
+                <div class="number-input-container">
+                  <span>&#36;</span>
+                  <input type="text" name="number-HOA" id="number-HOA">
+                </div>
+              </div>
+
+              <div class="input-row-container">
+                <div class="range-input-container">
+                  <label for="">Other Payments
+                    <i class="fas fa-info-circle"></i>
+                    <div class="info-tooltip invisible">
+                      <p>
+                        HOA (homeowners association) dues cover shared costs like maintenance and 
+                        upkeep of common areas. These almost always apply to condos and townhomes, 
+                        but sometimes apply to single family homes that have shared amenities.
+                      </p>
+                    </div>
+                  </label>
+                  <input type="range" name="range-other-payments" id="range-other-payments" min="0" max="10000" step="25" class="invisible">
+                </div>
+
+                <div class="number-input-container">
+                  <span>&#36;</span>
+                  <input type="text" name="number-other-payments" id="number-other-payments">
+                </div>
+              </div>
+            </div>
+
+            <button class="show-advanced-calculator">Advanced<i class="fas fa-angle-down"></i></button>
+            <button class="hide-advanced-calculator invisible">Simple<i class="fas fa-angle-up"></i></button>
+          </div>
+        </div>
       </section>
     </main>
 
@@ -255,5 +453,6 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script src="../js/mortgage.js"></script>
   </body>
 </html>

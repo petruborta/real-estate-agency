@@ -1,4 +1,247 @@
+/*=====================================
+general
+=====================================*/
+h1, h2 {
+  font-size: 3rem;
+}
+
+.fas.fa-info-circle {
+  margin-left: 0.5rem;
+  color: var(--gray);
+}
+
+.invisible {
+  display: none;
+}
+
+/*=====================================
+site-header
+=====================================*/
 .site-header {
-  height: 100vh;
-  background: khaki;
+  height: auto;
+  margin-top: 120px;
+  background: none;
+}
+
+/*=====================================
+mortgage section
+=====================================*/
+section.mortgage {
+  font-size: 1.6rem;
+  max-width: 1200px;
+  margin: 0 auto 15rem auto;
+}
+
+.section-title {
+  margin-bottom: 2.5rem;
+}
+
+.title-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.mortgage-calculator-container {
+  display: flex;
+  margin: 2rem;
+  border-radius: 10px;
+  background-color: var(--light-gray);
+}
+
+.mortgage-calculator-container input[type="range"] {
+  appearance: none;
+  height: 3px;
+  border-radius: 4px;
+  margin-top: 1.5rem;
+  background: var(--white);
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--gray);
+  border-radius: 50%;
+  background: var(--light-gray);
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: var(--marigold);
+}
+
+.donut-chart-container {
+  display: none;
+  background-color: var(--white);
+  margin: 1rem;
+  border-radius: 5px;
+}
+
+.inputs-container {
+  flex: auto;
+}
+
+.simple-calculator-container {
+  padding: 1rem 1rem 0 1rem;
+}
+
+.advanced-calculator-container {
+  height: 0;
+  padding: 0 1rem;
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
+}
+
+.input-row-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.double-number-input-container {
+  display: flex;
+  flex: 50%;
+}
+
+.double-number-input-container .number-input-container:first-child {
+  flex: 66%;
+}
+
+.double-number-input-container .number-input-container:last-child {
+  flex: 33%;
+}
+
+.double-number-input-container .number-input-container input {
+  width: 100%;
+}
+
+.range-input-container {
+  text-align: left;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.number-input-container {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+}
+
+.number-input-container span {
+  margin: 0 1rem;
+}
+
+.number-input-container input,
+.number-input-container select {
+  font-size: 1.4rem;
+  flex: auto;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  outline-style: none;
+  background-color: var(--light-gray);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.number-input-container input:focus,
+.number-input-container input:hover,
+.number-input-container select:focus,
+.number-input-container select:hover {
+  background-color: var(--white);
+}
+
+.info-tooltip {
+  height: auto;
+  width: 250px;
+  position: absolute;
+  padding: 1rem;
+  margin: 1rem 0 0 5rem;
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+  background-color: #F3F4F6;
+  z-index: 1;
+}
+
+.fas.fa-info-circle:hover + .info-tooltip {
+  display: block;
+}
+
+.show-advanced-calculator,
+.hide-advanced-calculator {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 1rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  color: var(--marigold);
+  background-color: var(--light-gray);
+  cursor: pointer;
+}
+
+.show-advanced-calculator .fas,
+.hide-advanced-calculator .fas {
+  margin-left: 1rem;
+}
+
+/*=====================================
+media queries
+=====================================*/
+@media (min-width: 576px) {
+  /*=====================================
+  mortgage section
+  =====================================*/
+  .input-row-container {
+    flex-direction: row;
+  }
+
+  .range-input-container {
+    flex: 50%;
+    margin-right: 1rem;
+  }
+
+  .range-input-container input {
+    display: block;
+  }
+
+  .number-input-container {
+    flex: 50%;
+  }
+}
+
+
+
+
+@media (min-width: 768px) {
+  /*=====================================
+  mortgage section
+  =====================================*/
+  .section-title {
+    font-size: 4rem;
+  }
+
+  .number-input-container input,
+  .number-input-container select {
+    font-size: 1.6rem;
+  }
+}
+
+
+
+
+@media (min-width: 1024px) {
+  /*=====================================
+  mortgage section
+  =====================================*/
+  .donut-chart-container {
+    max-width: 400px;
+    display: block;
+    flex: 40%;
+  }
 }
