@@ -41,6 +41,28 @@ section.mortgage {
   margin: 0 auto;
 }
 
+.payment-container .payment {
+  font-size: 4rem;
+}
+
+.payment-details {
+  font-size: 1.2rem;
+  width: 60%;
+  max-width: 350px;
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem auto;
+  color: var(--gray);
+}
+
+.payment-details-text {
+  text-align: left;
+}
+
+.payment-details-values {
+  text-align: right;
+}
+
 .mortgage-calculator-container {
   display: flex;
   margin: 2rem;
@@ -243,5 +265,9 @@ media queries
     max-width: 400px;
     display: block;
     flex: 40%;
+  }
+
+  .payment-container {
+    display: none;
   }
 }

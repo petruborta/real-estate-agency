@@ -21,22 +21,92 @@ let numberHomeInsurance = document.getElementById("number-home-insurance");
 let numberHOA = document.getElementById("number-HOA");
 let numberOtherPayments = document.getElementById("number-other-payments");
 
+setPayment();
+
+function setPayment() {
+  let payment = document.querySelector(".payment");
+
+  let principalAndInterest = setPrincipalAndInterest();
+  let propertyTaxes = setPropertyTaxes();
+  let homeInsurance = setHomeInsurance();
+  let HOA = setHOA();
+  let mortgageInsuranceAndOther = setMortgageInsuranceAndOther();
+
+  payment.innerText = "$" + (principalAndInterest + propertyTaxes + homeInsurance + HOA + mortgageInsuranceAndOther);
+}
+
+function setPrincipalAndInterest() {
+  let principalAndInterest = document.querySelector(".principal-and-interest");
+  let months = 30 * 12;
+  let monthlyInterest = numberInterestRate.value / 100 / 12;
+  let monthlyPayment = Math.floor(numberHomePrice.value * monthlyInterest * Math.pow(1 + monthlyInterest, months) / (Math.pow(1 + monthlyInterest, 360) - 1));
+  principalAndInterest.innerText = "$" + monthlyPayment;
+  
+  return monthlyPayment;
+}
+
+function setPropertyTaxes() {
+  let propertyTaxes = document.querySelector(".property-taxes");
+  let propertyTaxesValue = Math.ceil(numberHomePrice.value / 100 * numberPropertyTax.value / 12);
+  propertyTaxes.innerText = "$" + propertyTaxesValue.toString();
+
+  return propertyTaxesValue;
+}
+
+function setHomeInsurance() {
+  let homeInsurance = document.querySelector(".home-insurance");
+  let homeInsuranceValue = Math.ceil(numberHomeInsurance.value / 12);
+  homeInsurance.innerText = "$" + homeInsuranceValue.toString();
+
+  return homeInsuranceValue;
+}
+
+function setHOA() {
+  let HOA = document.querySelector(".HOA");
+  let HOAValue = parseFloat(numberHOA.value);
+  HOA.innerText = "$" + HOAValue.toString();
+
+  return HOAValue;
+}
+
+function setMortgageInsuranceAndOther() {
+  let mortgageInsuranceAndOther = document.querySelector(".mortgage-insurance-and-other");
+  let mortgageInsuranceAndOtherValue = parseFloat(numberOtherPayments.value);
+  mortgageInsuranceAndOther.innerText = "$" + mortgageInsuranceAndOtherValue.toString();
+
+  return mortgageInsuranceAndOtherValue;
+}
+
 rangeHomePrice.addEventListener("input", () => { 
   copyValue(numberHomePrice, rangeHomePrice);
   calculateDownPaymentPercentage(percentageDownPayment, numberHomePrice, numberDownPayment);
+  setPayment();
 });
-
 rangeDownPayment.addEventListener("input", () => { 
   copyValue(numberDownPayment, rangeDownPayment); 
   calculateDownPaymentPercentage(percentageDownPayment, numberHomePrice, numberDownPayment);
+  setPayment();
 });
-
-
-rangeInterestRate.oninput = () => { copyValue(numberInterestRate, rangeInterestRate); };
-rangePropertyTax.oninput = () => { copyValue(numberPropertyTax, rangePropertyTax); };
-rangeHomeInsurance.oninput = () => { copyValue(numberHomeInsurance, rangeHomeInsurance); };
-rangeHOA.oninput = () => { copyValue(numberHOA, rangeHOA); };
-rangeOtherPayments.oninput = () => { copyValue(numberOtherPayments, rangeOtherPayments); };
+rangeInterestRate.addEventListener("input", () => { 
+  copyValue(numberInterestRate, rangeInterestRate);
+  setPayment();
+});
+rangePropertyTax.addEventListener("input", () => { 
+  copyValue(numberPropertyTax, rangePropertyTax);
+  setPayment();
+});
+rangeHomeInsurance.addEventListener("input", () => { 
+  copyValue(numberHomeInsurance, rangeHomeInsurance);
+  setPayment();
+});
+rangeHOA.addEventListener("input", () => { 
+  copyValue(numberHOA, rangeHOA);
+  setPayment();
+});
+rangeOtherPayments.addEventListener("input", () => { 
+  copyValue(numberOtherPayments, rangeOtherPayments);
+  setPayment();
+});
 
 function copyValue(textInput, rangeInput) {
   textInput.value = rangeInput.value;
