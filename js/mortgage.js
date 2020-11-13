@@ -21,10 +21,13 @@ let numberHomeInsurance = document.getElementById("number-home-insurance");
 let numberHOA = document.getElementById("number-HOA");
 let numberOtherPayments = document.getElementById("number-other-payments");
 
+let paymentFixedTop = document.querySelector(".fixed-top");
+let paymentContainer = document.querySelector(".payment-container");
+
 setPayment();
 
 function setPayment() {
-  let payment = document.querySelector(".payment");
+  let payment = document.querySelectorAll(".payment");
 
   let principalAndInterest = setPrincipalAndInterest();
   let propertyTaxes = setPropertyTaxes();
@@ -32,14 +35,15 @@ function setPayment() {
   let HOA = setHOA();
   let mortgageInsuranceAndOther = setMortgageInsuranceAndOther();
 
-  payment.innerText = "$" + (principalAndInterest + propertyTaxes + homeInsurance + HOA + mortgageInsuranceAndOther);
+  payment[0].innerText = "$" + (principalAndInterest + propertyTaxes + homeInsurance + HOA + mortgageInsuranceAndOther);
+  payment[1].innerText = payment[0].innerText;
 }
 
 function setPrincipalAndInterest() {
   let principalAndInterest = document.querySelector(".principal-and-interest");
   let months = 30 * 12;
   let monthlyInterest = numberInterestRate.value / 100 / 12;
-  let monthlyPayment = Math.floor(numberHomePrice.value * monthlyInterest * Math.pow(1 + monthlyInterest, months) / (Math.pow(1 + monthlyInterest, 360) - 1));
+  let monthlyPayment = monthlyInterest == 0 ? 0 : Math.floor(numberHomePrice.value * monthlyInterest * Math.pow(1 + monthlyInterest, months) / (Math.pow(1 + monthlyInterest, 360) - 1));
   principalAndInterest.innerText = "$" + monthlyPayment;
   
   return monthlyPayment;
@@ -114,6 +118,14 @@ function copyValue(textInput, rangeInput) {
 
 function calculateDownPaymentPercentage(percentageDownPayment, homePrice, downPayment) {
   percentageDownPayment.value = Math.floor(downPayment.value * 100 / homePrice.value);
+}
+
+window.onscroll = () => {
+  if (paymentContainer.getBoundingClientRect().top <= 0) {
+    paymentFixedTop.classList.remove("invisible");
+  } else {
+    paymentFixedTop.classList.add("invisible");
+  }
 }
 
 window.onresize = () => {
