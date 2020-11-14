@@ -248,10 +248,11 @@ function getCityAndStateCode(callback, houses, container, houseType, action, sor
         stateCode = response.autocomplete[0]["state_code"];
         callback(houseType, houses, container, action, sort);
       } else {
+        city = "the specified location";
         addHousesToContainer(houses, container);
         disableShowMoreAndShowAllButtons(true);
         makeVisible(searchResultsContainer);
-        scrollToResults();
+        scrollTo(searchResultsContainer);
         resetForm();
       }
     }
@@ -378,7 +379,7 @@ function listHouses(houseType, houses, container, action, sort) {
       addHousesToContainer(houses, container);
       disableShowMoreAndShowAllButtons(false);
       makeVisible(searchResultsContainer);
-      scrollToResults();
+      scrollTo(searchResultsContainer);
     }
   });
 
@@ -410,20 +411,24 @@ function addHousesToContainer(houses, container) {
     if (visibleHouses >= 10) {
       makeInvisible(newHouse);
     }
+
     visibleHouses++;
   });
 }
 
 function showMoreHouses() {
+  let housesToDisplay = (featuredHousesPerSlide + 1) * 2;
   let invisibleHouses = document.querySelectorAll(".house.invisible");
 
-  if (invisibleHouses.length < 10) {
-    n = invisibleHouses.length;
+  if (invisibleHouses.length < housesToDisplay) {
+    housesToDisplay = invisibleHouses.length;
   }
   if (invisibleHouses.length > 0) {
-    for (let i = 0; i < 10; ++i) {
+    for (let i = 0; i < housesToDisplay; ++i) {
       makeVisible(invisibleHouses[i]);
     }
+
+    scrollTo(invisibleHouses[0]);
   } else {
     disableShowMoreAndShowAllButtons(true);
   }
@@ -436,6 +441,7 @@ function showAllHouses() {
     makeVisible(house);
   });
 
+  scrollTo(invisibleHouses[0]);
   disableShowMoreAndShowAllButtons(true);
 }
 
@@ -452,8 +458,8 @@ function disableShowMoreAndShowAllButtons(value) {
   }
 }
 
-function scrollToResults() {
-  searchResultsContainer.scrollIntoView({ 
+function scrollTo(element) {
+  element.scrollIntoView({ 
     behavior: 'smooth' 
   });
 }
