@@ -37,10 +37,15 @@ site-header
 /*=====================================
 mortgage section
 =====================================*/
+.main-page {
+  min-height: 100vh;
+}
+
 section.mortgage {
   font-size: 1.6rem;
   max-width: 1200px;
-  margin: 0 auto 15rem auto;
+  padding-bottom: 15rem;
+  margin: 0 auto ;
 }
 
 .section-title {
@@ -106,10 +111,50 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 .donut-chart-container {
+  height: 530px;
+  position: relative;
   display: none;
   background-color: var(--white);
   margin: 1rem;
   border-radius: 5px;
+}
+
+svg {
+	width: 100%;
+  height: 100%;
+}
+
+svg > g {
+  transform: translate(50%, 40%);
+}
+
+.monthly-payment {
+  font-size: 24px;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.payment-amount {
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.tooltip {
+  color: black;
+  text-align: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 12px sans-serif;
+  position: absolute;
+  display: none;
+  width: fit-content;
+  padding: 5px;
+  border: 0 none;
+  border-radius: 8px;
+  background: none repeat scroll 0 0 white;
+  box-shadow: -3px 3px 15px #888888;
+  z-index: 1;
 }
 
 .inputs-container {
@@ -190,17 +235,17 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 .info-tooltip {
-  height: auto;
   width: 250px;
   position: absolute;
   padding: 1rem;
-  margin: 1rem 0 0 5rem;
+  margin: -2rem 0 0 5rem;
   border: 1px solid var(--gray);
   border-radius: 5px;
   background-color: #F3F4F6;
   z-index: 1;
 }
 
+.info-tooltip:hover,
 .fas.fa-info-circle:hover + .info-tooltip {
   display: block;
 }
@@ -209,17 +254,18 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .hide-advanced-calculator {
   font-size: 1.6rem;
   font-weight: bold;
+  padding: 1rem;
   margin: 1rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   outline: none;
-  color: var(--marigold);
-  background-color: var(--light-gray);
+  background-color: var(--marigold);
   cursor: pointer;
 }
 
 .show-advanced-calculator .fas,
 .hide-advanced-calculator .fas {
+  color: var(--black);
   margin-left: 1rem;
 }
 
@@ -246,6 +292,10 @@ media queries
   .number-input-container {
     flex: 50%;
   }
+
+  .info-tooltip {
+    width: 350px;
+  }
 }
 
 
@@ -262,6 +312,10 @@ media queries
   .number-input-container input,
   .number-input-container select {
     font-size: 1.6rem;
+  }
+
+  .info-tooltip {
+    width: 450px;
   }
 }
 

@@ -1,3 +1,5 @@
+import change from "./d3chart.js";
+
 let advancedCalculator = document.querySelector(".advanced-calculator-container");
 advancedCalculator.style.height = "0px";
 
@@ -37,13 +39,26 @@ function setPayment() {
 
   payment[0].innerText = "$" + (principalAndInterest + propertyTaxes + homeInsurance + HOA + mortgageInsuranceAndOther);
   payment[1].innerText = payment[0].innerText;
+  
+  let legend = document.getElementsByClassName("legend");
+  Array.from(legend).map(text => text.remove());
+
+  let dataset = [
+    { label: "Principal & interest", value: principalAndInterest }, 
+    { label: "Property taxes", value: propertyTaxes }, 
+    { label: "Home insurance", value: homeInsurance },
+    { label: "HOA", value: HOA },
+    { label: "Mortgage insurance & other", value: mortgageInsuranceAndOther }
+  ];
+
+  change(dataset);
 }
 
 function setPrincipalAndInterest() {
   let principalAndInterest = document.querySelector(".principal-and-interest");
   let months = 30 * 12;
   let monthlyInterest = numberInterestRate.value / 100 / 12;
-  let monthlyPayment = monthlyInterest == 0 ? 0 : Math.floor(numberHomePrice.value * monthlyInterest * Math.pow(1 + monthlyInterest, months) / (Math.pow(1 + monthlyInterest, 360) - 1));
+  let monthlyPayment = Math.floor((numberHomePrice.value - numberDownPayment.value) * monthlyInterest);
   principalAndInterest.innerText = "$" + monthlyPayment;
   
   return monthlyPayment;
@@ -83,12 +98,12 @@ function setMortgageInsuranceAndOther() {
 
 rangeHomePrice.addEventListener("input", () => { 
   copyValue(numberHomePrice, rangeHomePrice);
-  calculateDownPaymentPercentage(percentageDownPayment, numberHomePrice, numberDownPayment);
+  calculateDownPayment(percentageDownPayment, numberHomePrice, numberDownPayment);
   setPayment();
 });
 rangeDownPayment.addEventListener("input", () => { 
-  copyValue(numberDownPayment, rangeDownPayment); 
-  calculateDownPaymentPercentage(percentageDownPayment, numberHomePrice, numberDownPayment);
+  copyValue(percentageDownPayment, rangeDownPayment); 
+  calculateDownPayment(percentageDownPayment, numberHomePrice, numberDownPayment);
   setPayment();
 });
 rangeInterestRate.addEventListener("input", () => { 
@@ -116,8 +131,8 @@ function copyValue(textInput, rangeInput) {
   textInput.value = rangeInput.value;
 }
 
-function calculateDownPaymentPercentage(percentageDownPayment, homePrice, downPayment) {
-  percentageDownPayment.value = Math.floor(downPayment.value * 100 / homePrice.value);
+function calculateDownPayment(percentageDownPayment, homePrice, downPayment) {
+  downPayment.value = Math.floor(homePrice.value / 100 * percentageDownPayment.value);
 }
 
 window.onscroll = () => {
@@ -142,12 +157,16 @@ showAdvancedCalculatorButton.onclick = function() {
     advancedCalculator.style.height = "24rem";
   makeVisible(hideAdvancedCalculatorButton);
   makeInvisible(this);
+  setTimeout(() => {
+    advancedCalculator.style.overflow = "visible";
+  }, 300);
 };
 
 hideAdvancedCalculatorButton.onclick = function() {
   advancedCalculator.style.height = "0px";
   makeVisible(showAdvancedCalculatorButton);
   makeInvisible(this);
+  advancedCalculator.style.overflow = "hidden";
 };
 
 

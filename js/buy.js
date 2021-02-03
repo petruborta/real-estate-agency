@@ -1,3 +1,5 @@
+import { RealtorAPIkey } from "./keys.js";
+
 class House {
   constructor(property_id, rdc_web_url, address, price, baths, beds, building_size, thumbnail) {
     var _property_id = property_id;
@@ -210,7 +212,9 @@ function clearData(houses, container) {
   city = "";
   stateCode = "";
   houses = [];
-  container.innerHTML = "";
+  try {
+    container.innerHTML = "";
+  } catch (error) {}
 }
 
 function processPriceRange() {
@@ -259,7 +263,7 @@ function getCityAndStateCode(callback, houses, container, houseType, action, sor
   });
 
   xhr.open("GET", "https://rapidapi.p.rapidapi.com/locations/auto-complete?input=" + inputLocation.value);
-  xhr.setRequestHeader("x-rapidapi-key", "APIkey");
+  xhr.setRequestHeader("x-rapidapi-key", RealtorAPIkey);
   xhr.setRequestHeader("x-rapidapi-host", "realtor.p.rapidapi.com");
 
   xhr.send(data);
@@ -310,7 +314,7 @@ function getFeaturedHouses() {
   
   xhr.open("GET", `https://realtor.p.rapidapi.com/properties/v2/list-for-sale?price_min=${minPrice}&sort=relevance&price_max=${maxPrice}&sqft_min=1&city=${city}&limit=${limit}&offset=0&state_code=${stateCode}`);
   xhr.setRequestHeader("x-rapidapi-host", "realtor.p.rapidapi.com");
-  xhr.setRequestHeader("x-rapidapi-key", "APIkey");
+  xhr.setRequestHeader("x-rapidapi-key", RealtorAPIkey);
   
   xhr.send(data);
 }
@@ -321,7 +325,7 @@ function setFeaturedHousesContaierTitle() {
 
 function addFeaturedHousesToContainer() {
   featuredHouses.forEach(houseData => {
-    let newHouse = addHouseToContainer(slideshowElements, houseData);
+    let newHouse = addHouseToContainer(slideshowElements, houseData, true);
     isFavoriteHouse(favoriteHouses, newHouse.id);
   });
 }
@@ -385,7 +389,7 @@ function listHouses(houseType, houses, container, action, sort) {
 
   xhr.open("GET", `https://realtor.p.rapidapi.com/properties/v2/list-${action}?price_min=${minPrice}&sort=${sort}&price_max=${maxPrice}&sqft_min=1&city=${city}&limit=${limit}&offset=0&state_code=${stateCode}`);
   xhr.setRequestHeader("x-rapidapi-host", "realtor.p.rapidapi.com");
-  xhr.setRequestHeader("x-rapidapi-key", "APIkey");
+  xhr.setRequestHeader("x-rapidapi-key", RealtorAPIkey);
 
   xhr.send(data);
 }
@@ -459,16 +463,18 @@ function disableShowMoreAndShowAllButtons(value) {
 }
 
 function scrollTo(element) {
-  element.scrollIntoView({ 
-    behavior: 'smooth' 
-  });
+  try {
+    element.scrollIntoView({ 
+      behavior: 'smooth' 
+    }); 
+  } catch (error) {}
 }
 
 /*=====================================
 house element functions
 =====================================*/
-function addHouseToContainer(container, houseData) {
-  let newHouse = createHouseElement(false);
+function addHouseToContainer(container, houseData, featured = false) {
+  let newHouse = createHouseElement(featured);
   newHouse.id = houseData.getPropertyID();
 
   setHouseImage(newHouse, houseData);

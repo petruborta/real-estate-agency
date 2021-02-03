@@ -3,6 +3,7 @@
   <head>
     <title>Mortgage Calculator</title>
     <meta charset="utf-8">
+    <meta name="description" content="Mortgage calculator to estimate monthly payment">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../fontawesome/css/all.css">
@@ -23,7 +24,7 @@
             <li><a class="header-menu-item" href="sell.html">Sell</a></li>
             <li><a class="header-menu-item" href="sold.html">Sold</a></li>
             <li><a class="header-menu-item current-page" href="mortgage.html">Mortgage</a></li>
-            <hr>
+            <li><hr></li>
             <li class="contact-detail">
               <a href="tel:123-456-7890">123-456-7890</a>
               <div class="platforms">
@@ -46,6 +47,7 @@
           </div>
           <i class="header-chat fas fa-comments"></i>
           <a class="header-phone" href="tel:123-456-7890">123-456-7890</a>
+          <label for="languages" class="invisible">Language</label>
           <select class="header-language-chooser" id="languages" name="languages">
             <option value="english">English</option>
             <option value="spanish">Spanish</option>
@@ -130,7 +132,8 @@
         </div>
         <hr>
         <div class="chat-input">
-          <textarea class="user-input" rows="5" placeholder="Type your message here..."></textarea>
+          <label for="user-input"></label>
+          <textarea class="user-input" name="user-input" rows="5" placeholder="Type your message here..."></textarea>
           <button class="send-message-btn">SEND</button>
         </div>
       </div>
@@ -139,8 +142,8 @@
     <main class="main-page">
       <section class="mortgage">
         <div class="title-container">
-          <h1 class="section-title">Mortgage Calculator</h1>
-          <h3 class="section-subtitle">Estimate your payment with our easy-to-use loan calculator.</h3>
+          <h2 class="section-title">Mortgage Calculator</h2>
+          <h3 class="section-subtitle">Estimate your monthly payment with our easy-to-use loan calculator.</h3>
         </div>
 
         <div class="payment-container">
@@ -179,8 +182,7 @@
             <div class="simple-calculator-container">
               <div class="input-row-container">
                 <div class="range-input-container">
-                  <label for="">Home Price
-                    <i class="fas fa-info-circle"></i>
+                  <label for="">Home Price<i class="fas fa-info-circle"></i>
                     <div class="info-tooltip invisible">
                       <p>
                         Did you know the price of your home can affect your interest rate and 
@@ -200,8 +202,7 @@
 
               <div class="input-row-container">
                 <div class="range-input-container">
-                  <label for="">Down Payment
-                    <i class="fas fa-info-circle"></i>
+                  <label for="">Down Payment<i class="fas fa-info-circle"></i>
                     <div class="info-tooltip invisible">
                       <p>
                         The down payment is the money you pay upfront for your new home. 
@@ -210,7 +211,7 @@
                       </p>
                     </div>
                   </label>
-                  <input type="range" name="range-down-payment" id="range-down-payment" min="0" max="500000" step="5000" value="40000" class="invisible">
+                  <input type="range" name="range-down-payment" id="range-down-payment" min="0" max="100" step="1" value="20" class="invisible">
                 </div>
 
                 <div class="double-number-input-container">
@@ -228,8 +229,7 @@
               
               <div class="input-row-container">
                 <div class="range-input-container">
-                  <label for="">Interest Rate
-                    <i class="fas fa-info-circle"></i>
+                  <label for="">Interest Rate<i class="fas fa-info-circle"></i>
                     <div class="info-tooltip invisible">
                       <p>
                         Your interest rate will vary based on a number of factors: 
@@ -248,8 +248,7 @@
 
               <div class="input-row-container">
                 <div class="range-input-container">
-                  <label for="">Loan Type
-                    <i class="fas fa-info-circle"></i>
+                  <label for="loan-type">Loan Type<i class="fas fa-info-circle"></i>
                     <div class="info-tooltip invisible">
                       <p>
                         This calculator supports different loan types. Each loan type has 
@@ -261,7 +260,7 @@
                 </div>
 
                 <div class="number-input-container">
-                  <select name="" id="">
+                  <select name="loan-type" id="loan-type">
                     <option value="">30-year fixed</option>
                     <option value="">20-year fixed</option>
                     <option value="">15-year fixed</option>
@@ -278,8 +277,7 @@
             <div class="advanced-calculator-container">
               <div class="input-row-container">
                 <div class="range-input-container">
-                  <label for="">Property Tax
-                    <i class="fas fa-info-circle"></i>
+                  <label for="">Property Tax<i class="fas fa-info-circle"></i>
                     <div class="info-tooltip invisible">
                       <p>
                         Enter your property tax rate, if known. Otherwise, the rate will default to the 
@@ -299,8 +297,7 @@
 
               <div class="input-row-container">
                 <div class="range-input-container">
-                  <label for="">Home Insurance
-                    <i class="fas fa-info-circle"></i>
+                  <label for="">Home Insurance<i class="fas fa-info-circle"></i>
                     <div class="info-tooltip invisible">
                       <p>
                         Also called homeowners insurance, this is almost always required by mortgage 
@@ -319,8 +316,7 @@
 
               <div class="input-row-container">
                 <div class="range-input-container">
-                  <label for="">HOA Dues
-                    <i class="fas fa-info-circle"></i>
+                  <label for="">HOA Dues<i class="fas fa-info-circle"></i>
                     <div class="info-tooltip invisible">
                       <p>
                         HOA (homeowners association) dues cover shared costs like maintenance and 
@@ -340,13 +336,13 @@
 
               <div class="input-row-container">
                 <div class="range-input-container">
-                  <label for="">Other Payments
-                    <i class="fas fa-info-circle"></i>
+                  <label for="">Other Payments<i class="fas fa-info-circle"></i>
                     <div class="info-tooltip invisible">
                       <p>
-                        HOA (homeowners association) dues cover shared costs like maintenance and 
-                        upkeep of common areas. These almost always apply to condos and townhomes, 
-                        but sometimes apply to single family homes that have shared amenities.
+                        To get a more accurate estimate of the total cost of homeownership, add other monthly payments like:
+                        Additional insurance (flood, hurricane, earthquake)
+                        Utilities, internet, or cable bills
+                        Lawn care or other regular maintenance
                       </p>
                     </div>
                   </label>
@@ -372,10 +368,10 @@
         <div class="col-general">
           <a href="tel:123-456-7890">123-456-7890</a>
           <div class="social-platforms">
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i>YouTube</a>
+            <a href="#"><i class="fab fa-twitter"></i>Twitter</a>
+            <a href="#"><i class="fab fa-facebook"></i>Facebook</a>
+            <a href="#"><i class="fab fa-instagram"></i>Instagram</a>
           </div>
           <a href="#">Contact Us</a>
           <a href="#">FAQs</a>
@@ -464,7 +460,7 @@
         </div>
         <div class="copyrights-text">
           <a href="#"><h3>Do Not Sell My Personal information</h3></a>
-          <p><span>&#169</span>2020 Lion Real Estate LLC. All rights reserved.</p>
+          <p><span>&#169</span>2021 Lion Real Estate LLC. All rights reserved.</p>
           <p>LION REAL ESTATE<sup>&#174</sup>, the LION REAL ESTATE Logo and LRS
             <sup>&#174</sup> are service marks owned by Lion Real Estate LLC. 
             Lion Real Estate LLC fully supports the principles of the 
@@ -479,7 +475,8 @@
       </div>
     </footer>
 
+    <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="../js/main.js"></script>
-    <script src="../js/mortgage.js"></script>
+    <script type="module" src="../js/mortgage.js"></script>
   </body>
 </html>

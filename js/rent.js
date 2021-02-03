@@ -7,11 +7,13 @@ let housesForRent = [];
 /*=====================================
 event listeners
 =====================================*/
-if (searchButton) { 
-  searchButton.onclick = () => { 
-    makeCall(housesForRent, housesForRentContainer, createHouseFromHouseForRentData, "for-rent", "relevance");
-  } 
-}
+try {
+  if (searchButton) { 
+    searchButton.onclick = () => { 
+      makeCall(housesForRent, housesForRentContainer, createHouseFromHouseForRentData, "for-rent", "relevance");
+    } 
+  }
+} catch (error) {}
 
 /*=====================================
 search form functions

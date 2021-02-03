@@ -7,11 +7,13 @@ let soldHouses = [];
 /*=====================================
 event listeners
 =====================================*/
-if (searchButton) { 
-  searchButton.onclick = () => { 
-    makeCall(soldHouses, soldHousesContainer, createHouseFromSoldHouseData, "sold", "sold_date");
-  } 
-}
+try {
+  if (searchButton) { 
+    searchButton.onclick = () => { 
+      makeCall(soldHouses, soldHousesContainer, createHouseFromSoldHouseData, "sold", "sold_date");
+    } 
+  }
+} catch (error) {}
 
 /*=====================================
 search form functions
