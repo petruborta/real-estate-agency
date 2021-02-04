@@ -13,35 +13,35 @@ class House {
 
     this.getPropertyID = function() { 
       return _property_id; 
-    }
+    };
 
     this.getRedWebURL = function() { 
       return _rdc_web_url; 
-    }
+    };
 
     this.getAddress = function() { 
       return _address; 
-    }
+    };
 
     this.getPrice = function() { 
       return _price; 
-    }
+    };
 
     this.getBaths = function() { 
       return _baths; 
-    }
+    };
 
     this.getBeds = function() { 
       return _beds; 
-    }
+    };
 
     this.getBuildingSize = function() { 
       return _building_size; 
-    }
+    };
 
     this.getThumbnail = function() { 
       return _thumbnail; 
-    }
+    };
   }
 }
 

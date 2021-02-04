@@ -22,7 +22,7 @@ h1, h2 {
   padding: 2rem;
   background-color: #F3F4F6;
   box-shadow: 0 1px 8px 1px var(--black);
-  z-index: 1;
+  z-index: 2;
 }
 
 /*=====================================
@@ -111,7 +111,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 .donut-chart-container {
-  height: 530px;
+  height: 540px;
   position: relative;
   display: none;
   background-color: var(--white);
@@ -254,9 +254,9 @@ svg > g {
 .hide-advanced-calculator {
   font-size: 1.6rem;
   font-weight: bold;
-  padding: 1rem;
+  padding: 1rem 2rem;
   margin: 1rem;
-  border: none;
+  border: 3px solid var(--black);
   border-radius: 25px;
   outline: none;
   background-color: var(--marigold);

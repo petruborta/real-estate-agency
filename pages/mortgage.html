@@ -182,7 +182,7 @@
             <div class="simple-calculator-container">
               <div class="input-row-container">
                 <div class="range-input-container">
-                  <label for="">Home Price<i class="fas fa-info-circle"></i>
+                  <label for="range-home-price">Home Price<i class="fas fa-info-circle"></i>
                     <div class="info-tooltip invisible">
                       <p>
                         Did you know the price of your home can affect your interest rate and 
@@ -202,7 +202,7 @@
 
               <div class="input-row-container">
                 <div class="range-input-container">
-                  <label for="">Down Payment<i class="fas fa-info-circle"></i>
+                  <label for="range-down-payment">Down Payment<i class="fas fa-info-circle"></i>
                     <div class="info-tooltip invisible">
                       <p>
                         The down payment is the money you pay upfront for your new home. 
@@ -211,7 +211,7 @@
                       </p>
                     </div>
                   </label>
-                  <input type="range" name="range-down-payment" id="range-down-payment" min="0" max="100" step="1" value="20" class="invisible">
+                  <input type="range" name="range-down-payment" id="range-percentage-down-payment" min="0" max="100" step="1" value="20" class="invisible">
                 </div>
 
                 <div class="double-number-input-container">
@@ -221,7 +221,7 @@
                   </div>
 
                   <div class="number-input-container">
-                    <input type="text" name="percentage-down-payment" id="percentage-down-payment" value="20">
+                    <input type="text" name="number-percentage-down-payment" id="number-percentage-down-payment" value="20">
                     <span>&#37;</span>
                   </div>
                 </div>
@@ -229,7 +229,7 @@
               
               <div class="input-row-container">
                 <div class="range-input-container">
-                  <label for="">Interest Rate<i class="fas fa-info-circle"></i>
+                  <label for="range-interest-rate">Interest Rate<i class="fas fa-info-circle"></i>
                     <div class="info-tooltip invisible">
                       <p>
                         Your interest rate will vary based on a number of factors: 
@@ -241,7 +241,7 @@
                 </div>
 
                 <div class="number-input-container">
-                  <input type="text" name="number-interest-rate" id="number-interest-rate" value="4.20">
+                  <input type="text" name="number-interest-rate" id="number-interest-rate" value="3.62">
                   <span>&#37;</span>
                 </div>
               </div>
@@ -261,14 +261,14 @@
 
                 <div class="number-input-container">
                   <select name="loan-type" id="loan-type">
-                    <option value="">30-year fixed</option>
-                    <option value="">20-year fixed</option>
-                    <option value="">15-year fixed</option>
-                    <option value="">10-year fixed</option>
-                    <option value="">FHA 30-year fixed</option>
-                    <option value="">FHA 15-year fixed</option>
-                    <option value="">VA 30-year fixed</option>
-                    <option value="">VA 15-year fixed</option>
+                    <option value="30y">30-year fixed</option>
+                    <option value="20y">20-year fixed</option>
+                    <option value="15y">15-year fixed</option>
+                    <option value="10y">10-year fixed</option>
+                    <option value="fha30y">FHA 30-year fixed</option>
+                    <option value="fha15y">FHA 15-year fixed</option>
+                    <option value="va30y">VA 30-year fixed</option>
+                    <option value="va15y">VA 15-year fixed</option>
                   </select>
                 </div>
               </div>
@@ -277,7 +277,7 @@
             <div class="advanced-calculator-container">
               <div class="input-row-container">
                 <div class="range-input-container">
-                  <label for="">Property Tax<i class="fas fa-info-circle"></i>
+                  <label for="range-property-tax">Property Tax<i class="fas fa-info-circle"></i>
                     <div class="info-tooltip invisible">
                       <p>
                         Enter your property tax rate, if known. Otherwise, the rate will default to the 
@@ -290,14 +290,14 @@
                 </div>
 
                 <div class="number-input-container">
-                  <input type="text" name="number-property-tax" id="number-property-tax" value="1.00">
+                  <input type="text" name="number-property-tax" id="number-property-tax" value="1">
                   <span>&#37;</span>
                 </div>
               </div>
 
               <div class="input-row-container">
                 <div class="range-input-container">
-                  <label for="">Home Insurance<i class="fas fa-info-circle"></i>
+                  <label for="range-home-insurance">Home Insurance<i class="fas fa-info-circle"></i>
                     <div class="info-tooltip invisible">
                       <p>
                         Also called homeowners insurance, this is almost always required by mortgage 
@@ -316,7 +316,7 @@
 
               <div class="input-row-container">
                 <div class="range-input-container">
-                  <label for="">HOA Dues<i class="fas fa-info-circle"></i>
+                  <label for="range-HOA">HOA Dues<i class="fas fa-info-circle"></i>
                     <div class="info-tooltip invisible">
                       <p>
                         HOA (homeowners association) dues cover shared costs like maintenance and 
@@ -336,7 +336,7 @@
 
               <div class="input-row-container">
                 <div class="range-input-container">
-                  <label for="">Other Payments<i class="fas fa-info-circle"></i>
+                  <label for="range-other-payments">Other Payments<i class="fas fa-info-circle"></i>
                     <div class="info-tooltip invisible">
                       <p>
                         To get a more accurate estimate of the total cost of homeownership, add other monthly payments like:

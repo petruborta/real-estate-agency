@@ -61,9 +61,9 @@ function change(data) {
 
   slice
     .on("mousemove", function(d){
-      const charRect = document.getElementsByClassName("donut-chart-container")[0].getBoundingClientRect();
-      toolTip.style("left", d3.mouse(this)[0] + charRect.x + 40 + "px");
-      toolTip.style("top", d3.mouse(this)[1] + charRect.y - 30 + "px");
+      const chartRect = document.getElementsByClassName("donut-chart-container")[0].getBoundingClientRect();
+      toolTip.style("left", d3.event.pageX - chartRect.x + "px");
+      toolTip.style("top", d3.event.pageY - chartRect.y + 25 + "px");
       toolTip.style("display", "inline-block");
       toolTip.html((d.data.label) + "<br>" + (d.data.value) + "$");
     });
@@ -84,7 +84,7 @@ function change(data) {
     .attr("transform", function(d, i) {
       const height = legendRectSize + legendSpacing;
       const horz = -10 * legendRectSize;
-      const vert = i * height + 190;
+      const vert = i * height + 200;
       return "translate(" + horz + "," + vert + ")";
     });
 
