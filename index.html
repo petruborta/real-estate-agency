@@ -3,6 +3,7 @@
     <head>
     <title>Lion Real Estate</title>
     <meta charset="utf-8">
+    <meta name="description" content="Everything you need to know about Lion Real Estate.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="fontawesome/css/all.css">
@@ -22,7 +23,7 @@
             <li><a class="header-menu-item" href="pages/sell.html">Sell</a></li>
             <li><a class="header-menu-item" href="pages/sold.html">Sold</a></li>
             <li><a class="header-menu-item" href="pages/mortgage.html">Mortgage</a></li>
-            <hr>
+            <li><hr></li>
             <li class="contact-detail">
               <a href="tel:123-456-7890">123-456-7890</a>
               <div class="platforms">
@@ -45,6 +46,7 @@
           </div>
           <i class="header-chat fas fa-comments"></i>
           <a class="header-phone" href="tel:123-456-7890">123-456-7890</a>
+          <label class="header-language-chooser-label" for="languages">Lang:</label>
           <select class="header-language-chooser" id="languages" name="languages">
             <option value="english">English</option>
             <option value="spanish">Spanish</option>
@@ -129,7 +131,7 @@
 
       <div class="chat-container">
         <div class="chat-header">
-          <h3>LRS LIVE CHAT</h3>
+          <h2>LRS LIVE CHAT</h2>
           <p>We are online</p>
           <span class="close-chat">&times;</span>
         </div>
@@ -138,7 +140,10 @@
         </div>
         <hr>
         <div class="chat-input">
-          <textarea class="user-input" rows="5" placeholder="Type your message here..."></textarea>
+          <div>
+            <label for="user-input">Type your message bellow</label>
+            <textarea class="user-input" id="user-input" name="user-input" rows="5"></textarea>
+          </div>
           <button class="send-message-btn">SEND</button>
         </div>
       </div>
@@ -151,7 +156,7 @@
           
           <div class="guides-text-container">
             <h1 class="section-title">Lion Real Estate Guides</h1>
-            <h3 class="section-subtitle">Everything you need to know when looking at different types of homes. All in one place.</h3>
+            <p class="section-subtitle">Everything you need to know when looking at different types of homes. All in one place.</p>
             <div class="guide buyer-guide">
               <div class="img-container"></div>
               <div class="text-container">
@@ -187,13 +192,13 @@
 
       <section class="actions">
         <div class="actions-content-container">
-          <h1 class="section-title">Lion Real Estate Options</h1>
-          <h3 class="section-subtitle">We have the most listings and constant updates. So you’ll never miss out.</h3>
+          <h2 class="section-title">Lion Real Estate Options</h2>
+          <p class="section-subtitle">We have the most listings and constant updates. So you’ll never miss out.</p>
           <div class="actions-text-container">
             <div class="action buy-action">
               <div class="img-container"></div>
               <div class="text-container">
-                <h2 class="action-title">Buy a home</h2>
+                <h3 class="action-title">Buy a home</h3>
                 <p class="action-description">Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.</p>
                 <a class="action-link" href="pages/buy.html">Search homes</a>
               </div>
@@ -202,7 +207,7 @@
             <div class="action rent-action">
               <div class="img-container"></div>
               <div class="text-container">
-                <h2 class="action-title">Rent a home</h2>
+                <h3 class="action-title">Rent a home</h3>
                 <p class="action-description">We’re creating a seamless online experience – from shopping on the largest rental network, to applying, to paying rent.</p>
                 <a class="action-link" href="pages/rent.html">Find rentals</a>
               </div>
@@ -211,7 +216,7 @@
             <div class="action sell-action">
               <div class="img-container"></div>
               <div class="text-container">
-                <h2 class="action-title">Sell a home</h2>
+                <h3 class="action-title">Sell a home</h3>
                 <p class="action-description">Whether you sell with new Lion Real Estate or take another approach, we’ll help you navigate the path to a successful sale.</p>
                 <a class="action-link" href="pages/sell.html">See your options</a>
               </div>
@@ -226,10 +231,10 @@
         <div class="col-general">
           <a href="tel:123-456-7890">123-456-7890</a>
           <div class="social-platforms">
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i>YouTube</a>
+            <a href="#"><i class="fab fa-twitter"></i>Twitter</a>
+            <a href="#"><i class="fab fa-facebook"></i>Facebook</a>
+            <a href="#"><i class="fab fa-instagram"></i>Instagram</a>
           </div>
           <a href="#">Contact Us</a>
           <a href="#">FAQs</a>

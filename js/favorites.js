@@ -35,17 +35,23 @@ function addFavoriteHousesToContainer() {
 }
 
 function showFavoriteHouses() {
-  if (thereAreFavoriteHouses()) {
-    makeVisible(favoriteHousesContainer);
-    makeInvisible(noFavoriteHousesContainer);
-    return true;
-  }
-
-  makeVisible(noFavoriteHousesContainer);
-  makeInvisible(favoriteHousesContainer);
-  return false;
+  try {
+    if (thereAreFavoriteHouses()) {
+      makeVisible(favoriteHousesContainer);
+      makeInvisible(noFavoriteHousesContainer);
+      return true;
+    }
+  
+    makeVisible(noFavoriteHousesContainer);
+    makeInvisible(favoriteHousesContainer);
+    return false;
+  } catch (error) {}
 }
 
 function thereAreFavoriteHouses() {
-  return favoriteHouses.length > 0;
+  try {
+    return favoriteHouses.length > 0;
+  } catch (error) {
+    return false;
+  }
 }

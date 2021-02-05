@@ -70,6 +70,7 @@ section.sell-with-us a:hover {
 }
 
 .title {
+  font-size: 24px;
   margin-bottom: 1rem;
 }
 
@@ -111,6 +112,12 @@ section.sell-with-us a:hover {
   transition: border 0.15s ease-in-out;
 }
 
+.address-form div {
+  display: flex;
+  align-items: center;
+  flex: auto;
+}
+
 .address-form:hover {
   border: 2px solid var(--gray);
 }
@@ -129,8 +136,12 @@ section.sell-with-us a:hover {
   outline-style: none;
 }
 
+.address-form label {
+  padding: 10px 5px 10px 10px;
+}
+
 .address-form input {
-  flex: 1 1 auto;
+  flex: auto;
   border: none;
   background-color: var(--white);
 }
@@ -210,6 +221,12 @@ media queries
   .explore-text,
   .the-process-text {
     width: 60%;
+  }
+
+  .agents-text a,
+  .sell-it-yourself-text a,
+  .the-process-text a {
+    color: var(--dark-red);
   }
 }
 

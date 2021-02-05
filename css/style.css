@@ -18,9 +18,11 @@ general
   --light-gray: rgb(230, 230, 230);
   --red: red;
   --red50: rgba(255, 0, 0, 0.5);
+  --dark-red: #AA0000;
   --marigold: #f0a202ff;
   --marigold15: rgba(240, 161, 2, 0.15);
   --marigold50: rgba(240, 161, 2, 0.5);
+  --dark-marigold: #6C4C15;
   --little-boy-blue: #72a1e5ff;
   --logo-width: 100px;
   --logo-height: 50px;
@@ -43,7 +45,7 @@ body {
   background-color: #F3F4F6;
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-family: 'Playfair Display', serif;
 }
 
@@ -206,11 +208,13 @@ header right nav
 }
 
 .header-phone, 
+.header-language-chooser-label, 
 .header-language-chooser {
   display: none;
 }
 
 .header-language-chooser {
+  margin-left: 1rem;
   outline: none;
 }
 
@@ -645,17 +649,27 @@ chat
   display: flex;
 }
 
+.chat-input > div {
+  padding-top: 5px;
+  background-color: var(--light-gray);
+}
+
+.chat-input label {
+  margin-left: 1rem;
+}
+
 .chat-input textarea {
   height: 50px;
-  width: 250px;
-  padding: 1rem;
+  width: 240px;
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  margin-top: 5px;
   border: none;
   overflow: auto;
   outline: none;
 }
 
 .chat-input .send-message-btn {
-  height: 51px;
+  height: 55px;
   width: 70px;
   font-weight: bold;
   padding: 1rem;
@@ -694,6 +708,8 @@ section {
 }
 
 .section-subtitle {
+  font-weight: 700;
+  font-size: 18px;
   width: 95%;
   margin: auto;
   margin-bottom: 3rem;
@@ -762,20 +778,21 @@ section.guides {
   font-weight: bold;
   padding: 0.5rem;
   margin-top: 1rem;
-  color: var(--marigold);
-  border: 1px solid var(--marigold);
+  color: var(--prussian-blue);
+  border: 1px solid var(--prussian-blue);
   background-color: var(--white);
   transition: all 0.3s ease-in-out;
 }
 
 .guide .text-container .guide-link .fas{
+  color: var(--prussian-blue);
   transition: all 0.3s ease-in-out -0.1s;
 }
 
 .guide .text-container .guide-link:hover {
   width: 140px;
   color: var(--white);
-  background-color: var(--marigold);
+  background-color: var(--prussian-blue);
   transition: all 0.3s ease-in-out;
 }
 
@@ -815,16 +832,15 @@ section.guides {
   margin: 5rem auto 1rem auto;
   color: var(--white);
   border: 3px solid transparent;
-  background-color: var(--marigold);
+  background-color: var(--prussian-blue);
   box-shadow: 0 8px 10px -3px var(--gray);
   transition: all 0.3s ease-in-out;  
 }
 
 .all-guides-btn:hover {
-  color: var(--marigold);
-  border: 3px solid var(--marigold);
+  color: var(--prussian-blue);
+  border: 3px solid var(--prussian-blue);
   background-color: var(--white);
-  transition: all 0.3s ease-in-out; 
 }
 
 .guides-img-container {
@@ -1003,16 +1019,18 @@ general column
 .col-general .social-platforms a,
 .col-general .social-platforms .fab {
   color: var(--black);
-  padding: 0 0.5rem 0 0;
 }
 
 
 .col-general .social-platforms a {
+  width: 100px;
   display: inline-block;
+  padding: 0;
 }
 
 .col-general .social-platforms .fab {
   font-size: 2rem;
+  margin-right: 0.5rem;
 }
 
 .col-general a:hover,
@@ -1088,6 +1106,7 @@ copyrights container
 
 .copyrights-container,
 .footer-img-container {
+  text-align: center;
   max-width: 500px;
   margin: 0 auto;
 }
@@ -1250,13 +1269,6 @@ media queries
     font-size: 1.75rem;
   }
 
-  .all-guides-btn:hover {
-    color: var(--marigold);
-    border: 3px solid var(--marigold);
-    background-color: var(--white);
-    transition: all 0.3s ease-in-out; 
-  }
-
   /*=====================================
   footer
   =====================================*/
@@ -1271,6 +1283,10 @@ media queries
   =====================================*/
   .col-general {
     height: 29rem;
+  }
+
+  .col-general .social-platforms a {
+    width: 120px;
   }
 
   /*=====================================
@@ -1410,6 +1426,7 @@ media queries
   }
 
   .header-phone, 
+  .header-language-chooser-label, 
   .header-language-chooser {
     display: block;
     font-size: 1.75rem;
@@ -1549,6 +1566,10 @@ media queries
   .col-markets {
     width: 30%;
     flex-direction: column;
+  }
+
+  .col-general .social-platforms a {
+    width: 100px;
   }
 
   .copyrights-container {

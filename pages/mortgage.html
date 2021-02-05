@@ -3,7 +3,7 @@
   <head>
     <title>Mortgage Calculator</title>
     <meta charset="utf-8">
-    <meta name="description" content="Mortgage calculator to estimate monthly payment">
+    <meta name="description" content="Estimate your monthly payment with our easy-to-use loan calculator.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../fontawesome/css/all.css">
@@ -48,6 +48,7 @@
           <i class="header-chat fas fa-comments"></i>
           <a class="header-phone" href="tel:123-456-7890">123-456-7890</a>
           <label for="languages" class="invisible">Language</label>
+          <label class="header-language-chooser-label" for="languages">Lang:</label>
           <select class="header-language-chooser" id="languages" name="languages">
             <option value="english">English</option>
             <option value="spanish">Spanish</option>
@@ -132,8 +133,10 @@
         </div>
         <hr>
         <div class="chat-input">
-          <label for="user-input"></label>
-          <textarea class="user-input" name="user-input" rows="5" placeholder="Type your message here..."></textarea>
+          <div>
+            <label for="user-input">Type your message bellow</label>
+            <textarea class="user-input" id="user-input" name="user-input" rows="5"></textarea>
+          </div>
           <button class="send-message-btn">SEND</button>
         </div>
       </div>
