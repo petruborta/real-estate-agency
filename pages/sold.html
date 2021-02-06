@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="description" content="Find sold houses near you. View photos, open house information, and property details for nearby real estate.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="../images/LRS.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../fontawesome/css/all.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -271,6 +272,11 @@
 
     <main class="main-page">
       <section class="sold-houses">
+        <div class="loading invisible">
+          <img src="../images/load-icon.png" alt="Loading icon">
+          <p>Please wait...</p>
+        </div>
+        
         <div class="search-results-container invisible">
           <h2>Search results</h2>
           <p class="no-results-message invisible">There are no sold houses in <span class="span-location"></span> in the given price range.</p>
@@ -399,6 +405,6 @@
 
     <script src="../js/main.js"></script>
     <script type="module" src="../js/buy.js"></script>
-    <script src="../js/sold.js"></script>
+    <script type="module" src="../js/sold.js"></script>
   </body>
 </html>

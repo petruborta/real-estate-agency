@@ -695,7 +695,8 @@ chat
 main page
 =====================================*/
 .main-page {
-  min-height: 40vh;
+  min-height: 50vh;
+  padding-bottom: 10rem;
 }
 
 section {

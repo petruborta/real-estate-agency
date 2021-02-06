@@ -1,19 +1,18 @@
+import { makeCall, House } from "./buy.js";
+
 /*=====================================
 bindings
 =====================================*/
 const soldHousesContainer = document.querySelector(".sold-houses-container");
+const searchButton = document.querySelector(".search-houses-btn");
 let soldHouses = [];
 
 /*=====================================
 event listeners
 =====================================*/
-try {
-  if (searchButton) { 
-    searchButton.onclick = () => { 
-      makeCall(soldHouses, soldHousesContainer, createHouseFromSoldHouseData, "sold", "sold_date");
-    } 
-  }
-} catch (error) {}
+searchButton.onclick = () => { 
+  makeCall(soldHouses, soldHousesContainer, createHouseFromSoldHouseData, "sold", "sold_date");
+};
 
 /*=====================================
 search form functions

@@ -1,19 +1,18 @@
+import { makeCall, House } from "./buy.js";
+
 /*=====================================
 bindings
 =====================================*/
 const housesForRentContainer = document.querySelector(".houses-for-rent-container");
+const searchButton = document.querySelector(".search-houses-btn");
 let housesForRent = [];
 
 /*=====================================
 event listeners
 =====================================*/
-try {
-  if (searchButton) { 
-    searchButton.onclick = () => { 
-      makeCall(housesForRent, housesForRentContainer, createHouseFromHouseForRentData, "for-rent", "relevance");
-    } 
-  }
-} catch (error) {}
+searchButton.onclick = () => { 
+  makeCall(housesForRent, housesForRentContainer, createHouseFromHouseForRentData, "for-rent", "relevance");
+};
 
 /*=====================================
 search form functions

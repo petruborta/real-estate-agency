@@ -86,6 +86,12 @@ section.sell-with-us a:hover {
   background-color: var(--white);
 }
 
+.agents-container a,
+.sell-it-yourself-container a,
+.the-process-container a {
+  color: var(--dark-red);
+}
+
 .explore-container,
 .the-process-container {
   max-width: 750px;
@@ -221,12 +227,6 @@ media queries
   .explore-text,
   .the-process-text {
     width: 60%;
-  }
-
-  .agents-text a,
-  .sell-it-yourself-text a,
-  .the-process-text a {
-    color: var(--dark-red);
   }
 }
 

@@ -127,7 +127,8 @@ featured houses
   margin-bottom: 3rem;
 }
 
-.featured-houses-container h2 {
+.featured-houses-container h3 {
+  font-size: 26px;
   margin-left: 1rem;
 }
 
@@ -217,7 +218,7 @@ span.beds-baths-area {
 
 span.beds-baths-area .fas {
   margin-right: 1rem;
-  color: var(--gray);
+  color: var(--prussian-blue);
 }
 
 span.city-county-state-code {
@@ -261,6 +262,22 @@ search result
 =====================================*/
 .search-results-container {
   margin-bottom: 3rem;
+}
+
+.loading {
+  height: 200px;
+  text-align: center;
+}
+
+.loading img {
+  height: 35px;
+  width: 35px;
+  margin-top: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotateZ(360deg); }
 }
 
 .search-results-container h2,

@@ -26,12 +26,12 @@ site header
 favorite houses
 =====================================*/
 section.favorite-houses {
+  min-height: 70vh;
   margin-bottom: 15rem;
 }
 
 .favorite-houses-container {
-  margin-bottom: 3rem;
-  padding: 1rem 0 0 1rem;
+  padding: 1rem 0 3rem 1rem;
   display: flex;
   flex-wrap: wrap;
 }

@@ -1,6 +1,6 @@
 import { RealtorAPIkey } from "./keys.js";
 
-class House {
+export class House {
   constructor(property_id, rdc_web_url, address, price, baths, beds, building_size, thumbnail) {
     var _property_id = property_id;
     var _rdc_web_url = rdc_web_url;
@@ -93,7 +93,7 @@ const topCities = [
 
 let clickedOnHeart = false;
 let limit, minPrice, maxPrice, city, stateCode;
-let favoriteHouses = JSON.parse(localStorage.getItem("favoriteHouses") || "[]");
+export let favoriteHouses = JSON.parse(localStorage.getItem("favoriteHouses") || "[]");
 
 let featuredHousesPerSlide, slides, slidesToRight, factor;
 let featuredHouses = [];
@@ -110,10 +110,31 @@ const nextHouseButton = document.querySelector(".next-house");
 const featuredHousesContainer = document.querySelector(".featured-houses-container");
 const slideshowElements = document.querySelector(".slideshow-elements");
 
+const loadingContainer = document.querySelector(".loading");
+
 const searchResultsContainer = document.querySelector(".search-results-container");
 const housesForSaleContainer = document.querySelector(".houses-for-sale-container");
 const showMoreButton = document.querySelector(".show-more-btn");
 const showAllButton = document.querySelector(".show-all-btn");
+
+function initiateBindings() {
+  if (document.title == "Buy Home") {
+    let n = Math.floor(Math.random() * 10);
+
+    limit = 6;
+    minPrice = 1;
+    maxPrice = 10000000;
+    city = topCities[n]["city_name"];
+    stateCode = topCities[n]["state_code"];
+
+    getFeaturedHouses();
+    makeVisible(loadingContainer);
+  }
+
+  limit = 50;
+}
+
+initiateBindings();
 
 /*=====================================
 event listeners
@@ -121,7 +142,7 @@ event listeners
 if (searchButton) { 
   searchButton.onclick = () => { 
     makeCall(housesForSale, housesForSaleContainer, createHouseFromHouseForSaleData, "for-sale", "relevance");
-  } 
+  };
 }
 
 if (previousHouseButton) { previousHouseButton.onclick = slideLeft; }
@@ -130,27 +151,9 @@ if (nextHouseButton) { nextHouseButton.onclick = slideRight; }
 if (showMoreButton) { showMoreButton.onclick = showMoreHouses; }
 if (showAllButton) { showAllButton.onclick = showAllHouses; }
 
-(
-  function initiateBindings() {
-    if (document.title == "Buy Home") {
-      let n = Math.floor(Math.random() * 10);
-
-      limit = 6;
-      minPrice = 1;
-      maxPrice = 10000000;
-      city = topCities[n]["city_name"];
-      stateCode = topCities[n]["state_code"];
-
-      //getFeaturedHouses();
-    }
-
-    limit = 50;
-  }
-)()
-
-updateSlideshowBindings();
-
-window.addEventListener("resize", updateSlideshowBindings);
+if (document.title === "Buy Home") {
+  window.addEventListener("resize", updateSlideshowBindings);
+}
 
 function updateSlideshowBindings() {
   featuredHousesPerSlide = getFeaturedHousesPerSlide();
@@ -158,9 +161,9 @@ function updateSlideshowBindings() {
   slidesToRight = slides - 1;
   factor = window.innerWidth < 1024 ? 1 : 0.5;
 
-  if (slideshowElements) { slideshowElements.style.transform = "translateX(0)"; }
-  if (previousHouseButton) { makeInvisible(previousHouseButton); }
-  if (nextHouseButton) { makeVisible(nextHouseButton); }
+  slideshowElements.style.transform = "translateX(0)";
+  makeInvisible(previousHouseButton);
+  makeVisible(nextHouseButton);
 }
 
 function getFeaturedHousesPerSlide() {
@@ -180,7 +183,7 @@ function getFeaturedHousesPerSlide() {
 /*=====================================
 search form functions
 =====================================*/
-function makeCall(houses, container, houseType, action, sort) {
+export function makeCall(houses, container, houseType, action, sort) {
   if (!inputLocation.value) {
     alert("Please introduce lacation.");
     return;
@@ -206,15 +209,16 @@ function makeCall(houses, container, houseType, action, sort) {
 
   clearData(houses, container);
   getCityAndStateCode(listHouses, houses, container, houseType, action, sort);
+  makeVisible(loadingContainer);
+  scrollTo(loadingContainer);
+  makeInvisible(searchResultsContainer);
 }
 
 function clearData(houses, container) {
   city = "";
   stateCode = "";
   houses = [];
-  try {
-    container.innerHTML = "";
-  } catch (error) {}
+  container.innerHTML = "";
 }
 
 function processPriceRange() {
@@ -306,8 +310,14 @@ function getFeaturedHouses() {
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === this.DONE) {
       extractDataOfInterest(this.responseText, featuredHouses, createHouseFromHouseForSaleData);
+      if (featuredHouses.length === 0) {
+        initiateBindings();
+      }
+      
+      updateSlideshowBindings();
       setFeaturedHousesContaierTitle();
       addFeaturedHousesToContainer();
+      makeInvisible(loadingContainer);
       makeVisible(featuredHousesContainer);
     }
   });
@@ -325,7 +335,7 @@ function setFeaturedHousesContaierTitle() {
 
 function addFeaturedHousesToContainer() {
   featuredHouses.forEach(houseData => {
-    let newHouse = addHouseToContainer(slideshowElements, houseData, true);
+    let newHouse = addHouseToContainer(slideshowElements, houseData, featuredHouses, true);
     isFavoriteHouse(favoriteHouses, newHouse.id);
   });
 }
@@ -362,11 +372,11 @@ function atLastSlide() {
   return slidesToRight <= 0;
 }
 
-function makeInvisible(element) {
+export function makeInvisible(element) {
   element.classList.add("invisible");
 }
 
-function makeVisible(element) {
+export function makeVisible(element) {
   element.classList.remove("invisible");
 }
 
@@ -382,6 +392,7 @@ function listHouses(houseType, houses, container, action, sort) {
       extractDataOfInterest(this.responseText, houses, houseType);
       addHousesToContainer(houses, container);
       disableShowMoreAndShowAllButtons(false);
+      makeInvisible(loadingContainer);
       makeVisible(searchResultsContainer);
       scrollTo(searchResultsContainer);
     }
@@ -408,7 +419,7 @@ function addHousesToContainer(houses, container) {
   makeVisible(document.querySelector(".horizontal-scroll-instruction"));
 
   houses.forEach(houseData => {
-    let newHouse = addHouseToContainer(container, houseData);
+    let newHouse = addHouseToContainer(container, houseData, houses);
     
     isFavoriteHouse(favoriteHouses, newHouse.id);
     
@@ -463,18 +474,16 @@ function disableShowMoreAndShowAllButtons(value) {
 }
 
 function scrollTo(element) {
-  try {
-    element.scrollIntoView({ 
-      behavior: 'smooth' 
-    }); 
-  } catch (error) {}
+  element.scrollIntoView({ 
+    behavior: 'smooth' 
+  }); 
 }
 
 /*=====================================
 house element functions
 =====================================*/
-function addHouseToContainer(container, houseData, featured = false) {
-  let newHouse = createHouseElement(featured);
+export function addHouseToContainer(container, houseData, houses, featured = false) {
+  let newHouse = createHouseElement(houses, featured);
   newHouse.id = houseData.getPropertyID();
 
   setHouseImage(newHouse, houseData);
@@ -486,7 +495,7 @@ function addHouseToContainer(container, houseData, featured = false) {
   return newHouse;
 }
 
-function createHouseElement(featured) {
+function createHouseElement(houses, featured) {
   let house = document.createElement("div");
   house.classList.add("house");
 
@@ -494,7 +503,7 @@ function createHouseElement(featured) {
     house.classList.add("featured-house");
   }
 
-  house.append(createFavoriteElement());
+  house.append(createFavoriteElement(houses));
   house.append(createHouseImageElement());
   house.append(createHouseDescriptionElement());
 
@@ -503,7 +512,7 @@ function createHouseElement(featured) {
 
 
 
-function createFavoriteElement() {
+function createFavoriteElement(houses) {
   let favorite = document.createElement("div");
   let emptyHeart = createEmptyHeartElement();
   let filledHeart = createFilledHeartElement();
@@ -512,7 +521,7 @@ function createFavoriteElement() {
   favorite.append(emptyHeart);
   favorite.append(filledHeart);
 
-  emptyHeart.addEventListener("click", () => { addHouseToFavorites(emptyHeart); });
+  emptyHeart.addEventListener("click", () => { addHouseToFavorites(houses, emptyHeart); });
   emptyHeart.addEventListener("click", () => { makeInvisible(emptyHeart); });
   emptyHeart.addEventListener("click", () => { makeVisible(emptyHeart.nextElementSibling); });
 
@@ -662,24 +671,12 @@ function viewHouseInNewTabOnClick(house, houseData) {
   }
 }
 
-function addHouseToFavorites(emptyHeartElement) {
+function addHouseToFavorites(houses, emptyHeartElement) {
   let favoriteElement = emptyHeartElement.parentNode;
   let houseElement = favoriteElement.parentNode;
   let favoriteHouse;
 
-  switch(document.title) {
-    case "Buy Home": 
-      favoriteHouse = getHouseData(housesForSale, houseElement.id);
-      break;
-    case "Rent Home":
-      favoriteHouse = getHouseData(housesForRent, houseElement.id);
-      break;
-    case "Sold Houses":
-      favoriteHouse = getHouseData(soldHouses, houseElement.id);
-      break;
-    default:
-      favoriteHouse = getHouseData(featuredHouses, houseElement.id);
-  }
+  favoriteHouse = getHouseData(houses, houseElement.id);
 
   favoriteHouses.push(favoriteHouse);
 

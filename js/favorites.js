@@ -1,3 +1,4 @@
+import { favoriteHouses, makeVisible, makeInvisible, House, addHouseToContainer } from "./buy.js";
 const favoriteHousesContainer = document.querySelector(".favorite-houses-container");
 const noFavoriteHousesContainer = document.querySelector(".no-favorite-houses-container");
 
@@ -35,23 +36,17 @@ function addFavoriteHousesToContainer() {
 }
 
 function showFavoriteHouses() {
-  try {
-    if (thereAreFavoriteHouses()) {
-      makeVisible(favoriteHousesContainer);
-      makeInvisible(noFavoriteHousesContainer);
-      return true;
-    }
-  
-    makeVisible(noFavoriteHousesContainer);
-    makeInvisible(favoriteHousesContainer);
-    return false;
-  } catch (error) {}
+  if (thereAreFavoriteHouses()) {
+    makeVisible(favoriteHousesContainer);
+    makeInvisible(noFavoriteHousesContainer);
+    return true;
+  }
+
+  makeVisible(noFavoriteHousesContainer);
+  makeInvisible(favoriteHousesContainer);
+  return false;
 }
 
 function thereAreFavoriteHouses() {
-  try {
-    return favoriteHouses.length > 0;
-  } catch (error) {
-    return false;
-  }
+  return favoriteHouses.length > 0;
 }
