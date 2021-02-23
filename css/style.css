@@ -720,7 +720,8 @@ section {
 section guides
 =====================================*/
 section.guides {
-  height: max(100vh, 100vw);
+  height: 700px;
+  position: relative;
 }
 
 .guides-content-container {
@@ -847,6 +848,7 @@ section.guides {
 .guides-img-container {
   height: inherit;
   width: 0%;
+  top: 0;
   right: 0;
   position: absolute;
   background-color: var(--marigold);
@@ -1333,11 +1335,7 @@ media queries
 
   /*=====================================
   section guides
-  =====================================*/
-  section.guides {
-    height: min(100vh, 100vw);
-  }
-  
+  =====================================*/  
   .guides-text-container {
     max-width: 550px;
   }
@@ -1446,7 +1444,7 @@ media queries
 
   .account-tooltip {
     margin-top: 200px;
-    margin-right: 60px;
+    margin-right: 110px;
   }
 
   .account-tooltip::before {

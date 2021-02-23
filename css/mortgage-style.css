@@ -80,6 +80,7 @@ section.mortgage {
 }
 
 .mortgage-calculator-container {
+  min-width: 280px;
   display: flex;
   margin: 2rem;
   border-radius: 10px;

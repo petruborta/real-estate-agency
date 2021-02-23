@@ -219,6 +219,7 @@ function mainPageIsInViewport() {
 
 document.addEventListener("scroll", () => {
   mainBar.style.opacity = (!headerIsInViewport()) ? "0" : "1";
+  mainBar.style.pointerEvents = (!headerIsInViewport()) ? "none" : "all";
   if (exploreButton != null) {
     exploreButton.style.opacity = (!mainPageIsInViewport()) ? "0" : "1";
     exploreButton.style.pointerEvents = (!mainPageIsInViewport()) ? "none" : "all";
