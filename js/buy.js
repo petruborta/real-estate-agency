@@ -1,4 +1,4 @@
-import { RealtorAPIkey } from "./keys.js";
+import { DISPATCH_REALTOR_API_REQUESTS_API_ENDPOINT as lambdaEndpoint } from "./keys.js";
 
 export class House {
   constructor(property_id, rdc_web_url, address, price, baths, beds, building_size, thumbnail) {
@@ -127,7 +127,16 @@ function initiateBindings() {
     city = topCities[n]["city_name"];
     stateCode = topCities[n]["state_code"];
 
-    getFeaturedHouses();
+    const params = {
+      realtorEndpoint: "featured-houses",
+      minPrice: minPrice.toString(),
+      maxPrice: maxPrice.toString(),
+      city: city.replaceAll(" ", "%20"),
+      limit: limit.toString(),
+      stateCode
+    };
+    
+    dispatchLambdaRequest(lambdaEndpoint, params, getFeaturedHouses);
     makeVisible(loadingContainer);
   }
 
@@ -136,12 +145,45 @@ function initiateBindings() {
 
 initiateBindings();
 
+function dispatchLambdaRequest(url, params, callback, ...args) {
+  const data = null;
+  const xhr = new XMLHttpRequest();
+  url += formatParams(params);
+
+  xhr.open("GET", url, true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.addEventListener("load", function () {
+    if (xhr.status < 400) {
+      callback(JSON.parse(xhr.responseText), args);
+    } else {
+      console.log("Request failed: " + xhr.responseText);
+    }
+  });
+  
+  xhr.send(data);
+}
+
+function formatParams(params) {
+  return "?" + Object
+    .keys(params)
+    .map(function(key) {
+      return key + "=" + encodeURIComponent(params[key])
+    })
+    .join("&");
+}
+
 /*=====================================
 event listeners
 =====================================*/
 if (searchButton) { 
   searchButton.onclick = () => { 
-    makeCall(housesForSale, housesForSaleContainer, createHouseFromHouseForSaleData, "for-sale", "relevance");
+    let location = inputLocation.value.replaceAll(" ", "%20");
+    location = location.replaceAll(",", "%2C");
+    const params = {
+      realtorEndpoint: "city-and-state-code",
+      location
+    };
+    makeCall(params, housesForSale, housesForSaleContainer, createHouseFromHouseForSaleData, "for-sale", "relevance");
   };
 }
 
@@ -183,7 +225,7 @@ function getFeaturedHousesPerSlide() {
 /*=====================================
 search form functions
 =====================================*/
-export function makeCall(houses, container, houseType, action, sort) {
+export function makeCall(params, houses, container, houseType, action, sort) {
   if (!inputLocation.value) {
     alert("Please introduce lacation.");
     return;
@@ -208,7 +250,7 @@ export function makeCall(houses, container, houseType, action, sort) {
   }
 
   clearData(houses, container);
-  getCityAndStateCode(listHouses, houses, container, houseType, action, sort);
+  dispatchLambdaRequest(lambdaEndpoint, params, getCityAndStateCode, listHouses, houses, container, houseType, action, sort);
   makeVisible(loadingContainer);
   scrollTo(loadingContainer);
   makeInvisible(searchResultsContainer);
@@ -243,39 +285,35 @@ function getSelectedOptionNumericValue(select) {
   return value;
 }
 
-function getCityAndStateCode(callback, houses, container, houseType, action, sort) {
-  const data = null;
-  const xhr = new XMLHttpRequest();
+function getCityAndStateCode(response, args) {
+  if (response.autocomplete.length > 0) {
+    city = response.autocomplete[0]["city"];
+    stateCode = response.autocomplete[0]["state_code"];
 
-  xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === this.DONE) {
-      let response = JSON.parse(this.responseText);
+    const [callback, houses, container, houseType, action, sort] = args;
+    const params = {
+      realtorEndpoint: "houses-for-sale",
+      action,
+      minPrice: minPrice.toString(),
+      sort,
+      maxPrice: maxPrice.toString(),
+      city: city.replaceAll(" ", "%20"),
+      limit: limit.toString(),
+      stateCode
+    };
 
-      if (response.autocomplete.length > 0) {
-        city = response.autocomplete[0]["city"];
-        stateCode = response.autocomplete[0]["state_code"];
-        callback(houseType, houses, container, action, sort);
-      } else {
-        city = "the specified location";
-        addHousesToContainer(houses, container);
-        disableShowMoreAndShowAllButtons(true);
-        makeVisible(searchResultsContainer);
-        scrollTo(searchResultsContainer);
-        resetForm();
-      }
-    }
-  });
-
-  xhr.open("GET", "https://rapidapi.p.rapidapi.com/locations/auto-complete?input=" + inputLocation.value);
-  xhr.setRequestHeader("x-rapidapi-key", RealtorAPIkey);
-  xhr.setRequestHeader("x-rapidapi-host", "realtor.p.rapidapi.com");
-
-  xhr.send(data);
+    dispatchLambdaRequest(lambdaEndpoint, params, callback, houseType, houses, container);
+  } else {
+    city = "the specified location";
+    addHousesToContainer(houses, container);
+    disableShowMoreAndShowAllButtons(true);
+    makeVisible(searchResultsContainer);
+    scrollTo(searchResultsContainer);
+    resetForm();
+  }
 }
 
-function extractDataOfInterest(responseText, houses, houseType) {
-  let response = JSON.parse(responseText);
-
+function extractDataOfInterest(response, houses, houseType) {
   response.properties.forEach(houseData => {
     houses.push(houseType(houseData));
   });
@@ -303,30 +341,17 @@ function resetForm() {
 /*=====================================
 featured houses slideshow functions
 =====================================*/
-function getFeaturedHouses() {
-  const data = null;
-  const xhr = new XMLHttpRequest();
+function getFeaturedHouses(response) {
+  extractDataOfInterest(response, featuredHouses, createHouseFromHouseForSaleData);
+  if (featuredHouses.length === 0) {
+    initiateBindings();
+  }
   
-  xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === this.DONE) {
-      extractDataOfInterest(this.responseText, featuredHouses, createHouseFromHouseForSaleData);
-      if (featuredHouses.length === 0) {
-        initiateBindings();
-      }
-      
-      updateSlideshowBindings();
-      setFeaturedHousesContaierTitle();
-      addFeaturedHousesToContainer();
-      makeInvisible(loadingContainer);
-      makeVisible(featuredHousesContainer);
-    }
-  });
-  
-  xhr.open("GET", `https://realtor.p.rapidapi.com/properties/v2/list-for-sale?price_min=${minPrice}&sort=relevance&price_max=${maxPrice}&sqft_min=1&city=${city}&limit=${limit}&offset=0&state_code=${stateCode}`);
-  xhr.setRequestHeader("x-rapidapi-host", "realtor.p.rapidapi.com");
-  xhr.setRequestHeader("x-rapidapi-key", RealtorAPIkey);
-  
-  xhr.send(data);
+  updateSlideshowBindings();
+  setFeaturedHousesContaierTitle();
+  addFeaturedHousesToContainer();
+  makeInvisible(loadingContainer);
+  makeVisible(featuredHousesContainer);
 }
   
 function setFeaturedHousesContaierTitle() {
@@ -383,26 +408,14 @@ export function makeVisible(element) {
 /*=====================================
 search results functions
 =====================================*/
-function listHouses(houseType, houses, container, action, sort) {
-  const data = null;
-  const xhr = new XMLHttpRequest();
-
-  xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === this.DONE) {
-      extractDataOfInterest(this.responseText, houses, houseType);
-      addHousesToContainer(houses, container);
-      disableShowMoreAndShowAllButtons(false);
-      makeInvisible(loadingContainer);
-      makeVisible(searchResultsContainer);
-      scrollTo(searchResultsContainer);
-    }
-  });
-
-  xhr.open("GET", `https://realtor.p.rapidapi.com/properties/v2/list-${action}?price_min=${minPrice}&sort=${sort}&price_max=${maxPrice}&sqft_min=1&city=${city}&limit=${limit}&offset=0&state_code=${stateCode}`);
-  xhr.setRequestHeader("x-rapidapi-host", "realtor.p.rapidapi.com");
-  xhr.setRequestHeader("x-rapidapi-key", RealtorAPIkey);
-
-  xhr.send(data);
+function listHouses(response, args) {
+  const [houseType, houses, container] = args;
+  extractDataOfInterest(response, houses, houseType);
+  addHousesToContainer(houses, container);
+  disableShowMoreAndShowAllButtons(false);
+  makeInvisible(loadingContainer);
+  makeVisible(searchResultsContainer);
+  scrollTo(searchResultsContainer);
 }
 
 function addHousesToContainer(houses, container) {

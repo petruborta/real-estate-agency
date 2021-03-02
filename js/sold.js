@@ -5,13 +5,20 @@ bindings
 =====================================*/
 const soldHousesContainer = document.querySelector(".sold-houses-container");
 const searchButton = document.querySelector(".search-houses-btn");
+const inputLocation = document.getElementById("location");
 let soldHouses = [];
 
 /*=====================================
 event listeners
 =====================================*/
 searchButton.onclick = () => { 
-  makeCall(soldHouses, soldHousesContainer, createHouseFromSoldHouseData, "sold", "sold_date");
+  let location = inputLocation.value.replaceAll(" ", "%20");
+  location = location.replaceAll(",", "%2C");
+  const params = {
+    realtorEndpoint: "city-and-state-code",
+    location
+  };
+  makeCall(params, soldHouses, soldHousesContainer, createHouseFromSoldHouseData, "sold", "sold_date");
 };
 
 /*=====================================

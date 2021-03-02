@@ -5,13 +5,20 @@ bindings
 =====================================*/
 const housesForRentContainer = document.querySelector(".houses-for-rent-container");
 const searchButton = document.querySelector(".search-houses-btn");
+const inputLocation = document.getElementById("location");
 let housesForRent = [];
 
 /*=====================================
 event listeners
 =====================================*/
 searchButton.onclick = () => { 
-  makeCall(housesForRent, housesForRentContainer, createHouseFromHouseForRentData, "for-rent", "relevance");
+  let location = inputLocation.value.replaceAll(" ", "%20");
+  location = location.replaceAll(",", "%2C");
+  const params = {
+    realtorEndpoint: "city-and-state-code",
+    location
+  };
+  makeCall(params, housesForRent, housesForRentContainer, createHouseFromHouseForRentData, "for-rent", "relevance");
 };
 
 /*=====================================
