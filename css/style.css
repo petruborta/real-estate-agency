@@ -974,6 +974,18 @@ footer
   color: var(--marigold)
 }
 
+.author {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.author > p {
+  color: var(--gray);
+  margin-right: 1rem;
+}
+
 /*=====================================
 links-container
 =====================================*/
